@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>การจอง - Luna Room Spa Studio</title>
+    <link rel="stylesheet" href="/src/css/bookingstyle.css">
+</head>
+<body>
+    <!-- Background -->
+    <div class="background"></div>
+    <div class="background-overlay"></div>
+
+    <!-- Decorative Flowers -->
+    <div class="flower flower-left"></div>
+    <div class="flower flower-right"></div>
+
+    <!-- Booking Container -->
+    <div class="booking-container">
+        <div class="booking-modal">
+            <!-- Close Button -->
+            <button class="close-btn" onclick="window.history.back()">
+                <svg viewBox="0 0 24 24" fill="none">
+                    <path d="M6 6L18 18M18 6L6 18" stroke-width="3" stroke-linecap="round"/>
+                </svg>
+            </button>
+
+            <!-- Header -->
+            <h1 class="booking-title">การจอง / BOOKING</h1>
+            <div class="title-divider"></div>
+
+            <!-- Booking Form -->
+            <form class="booking-form" id="bookingForm">
+                <!-- Date Selection -->
+                <div class="input-group">
+                    <label class="input-label">Select a Date</label>
+                    <input type="date" class="input-field" id="date" required>
+                </div>
+
+                <!-- Time Selection -->
+                <div class="input-group">
+                    <label class="input-label">Select Time</label>
+                    <select class="select-field" id="time" required>
+                        <option value="" disabled selected>เลือกเวลา</option>
+                        <option value="09:00">09:00 AM</option>
+                        <option value="10:00">10:00 AM</option>
+                        <option value="11:00">11:00 AM</option>
+                        <option value="12:00">12:00 PM</option>
+                        <option value="13:00">01:00 PM</option>
+                        <option value="14:00">02:00 PM</option>
+                        <option value="15:00">03:00 PM</option>
+                        <option value="16:00">04:00 PM</option>
+                        <option value="17:00">05:00 PM</option>
+                        <option value="18:00">06:00 PM</option>
+                    </select>
+                </div>
+
+                <!-- Package Selection -->
+                <div class="input-group">
+                    <label class="input-label">Select a Treatment Category</label>
+                    <select class="select-field" id="package" required>
+                        <option value="" disabled selected>เลือกแพ็กเกจ</option>
+                        <option value="massage">MASSAGE - นวดผ่อนคลาย</option>
+                        <option value="onsen">ONSEN - ออนเซ็นญี่ปุ่น</option>
+                        <option value="waxing">WAXING - แว็กซ์ขน</option>
+                    </select>
+                </div>
+
+                <!-- Treatment Options (Shows for certain packages) -->
+                <div class="input-group treatment-options" id="treatmentOptions">
+                    <label class="input-label">Choose a Treatment</label>
+                    <select class="select-field" id="treatment">
+                        <option value="" disabled selected>เลือกทรีทเมนต์</option>
+                    </select>
+                </div>
+
+                <!-- Submit Button -->
+                <button type="submit" class="submit-btn">Submit</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        // Package treatments mapping
+        const treatments = {
+            'massage': [
+                '1.Thai Relaxing Massage - นวดไทยผ่อนคลาย  (350 – 600 ฿ / 60 นาที)',
+                '2.Thai Oil Massage - นวดไทยน้ำมัน  (450 – 700 ฿ / 60 นาที)',
+                '3.Hot Stone Massage - นวดหินร้อน  (600 – 1,200 ฿ / 60 นาที)',
+                '4.Aromatherapy Massage - นวดอโรมาเทอราพี  (600 – 1,000 ฿ / 60 นาที)',
+                '5.Herbal Compress Massage - นวดประคบสมุนไพร  (700 – 1,200 ฿ / 60 นาที)',
+                '6.Leg/Foot/Neck/Shoulder Massage - นวดขา‑เท้า‑คอ‑บ่า‑ไหล่  (300 – 500 ฿ / 30–60 นาที)',
+                '7.Office Syndrome Massage - นวดออฟฟิศซินโดรม  (450 – 700 ฿ / 60 นาที )',
+                '8.Body Scrub / Facial Spa - สครับผิวกาย / สปาหน้า  (500 – 1,000 ฿ / 60 นาที) '
+            ],
+            'onsen': [
+                '1. Hot Bath + Sauna + Steam  (300 ฿)',
+                '2.Public Onsen Bath  (400 – 600 ฿)',
+            ],
+            'waxing': [
+                '1.Underarm Wax  (150 – 250 ฿)',
+                '2.Bikini Line Wax  (400 – 600 ฿)',
+                '3.Full Leg Wax (500 – 700 ฿)',
+                '4.Facial Wax (Forehead, Eyebrows, Sideburns) (899 (โปรโมชั่น) ฿)',
+            ],
+           
+            
+        };
+
+        // Set minimum date to today
+        const dateInput = document.getElementById('date');
+        const today = new Date().toISOString().split('T')[0];
+        dateInput.setAttribute('min', today);
+
+        // Package change handler
+        const packageSelect = document.getElementById('package');
+        const treatmentOptions = document.getElementById('treatmentOptions');
+        const treatmentSelect = document.getElementById('treatment');
+
+        packageSelect.addEventListener('change', function() {
+            const selectedPackage = this.value;
+            
+            // Clear previous options
+            treatmentSelect.innerHTML = '<option value="" disabled selected>เลือกทรีทเมนต์</option>';
+            
+            // Check if package has treatment options
+            if (treatments[selectedPackage]) {
+                // Show treatment options
+                treatmentOptions.classList.add('show');
+                
+                // Add new options
+                treatments[selectedPackage].forEach(treatment => {
+                    const option = document.createElement('option');
+                    option.value = treatment;
+                    option.textContent = treatment;
+                    treatmentSelect.appendChild(option);
+                });
+                
+                treatmentSelect.required = true;
+            } else {
+                // Hide treatment options
+                treatmentOptions.classList.remove('show');
+                treatmentSelect.required = false;
+            }
+        });
+
+        // Form submission
+        document.getElementById('bookingForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const formData = {
+                date: document.getElementById('date').value,
+                time: document.getElementById('time').value,
+                package: document.getElementById('package').value,
+                treatment: treatmentSelect.value || 'ไม่ระบุ'
+            };
+            
+            console.log('Booking Data:', formData);
+            
+            // Show success message
+            alert(`✅ การจองสำเร็จ!\n\nวันที่: ${formData.date}\nเวลา: ${formData.time}\nแพ็กเกจ: ${formData.package}\nทรีทเมนต์: ${formData.treatment}\n\nเราจะติดต่อกลับไปยืนยันการจองในเร็วๆ นี้ค่ะ`);
+            
+            // Reset form
+            this.reset();
+            treatmentOptions.classList.remove('show');
+        });
+    </script>
+</body>
+</html>

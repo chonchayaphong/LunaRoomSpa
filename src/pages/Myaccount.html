@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Account - Luna Room</title>
+    <link rel="stylesheet" href="/src/css/Myaccount.css">
+    <link rel="stylesheet" href="/src/components/account.js">
+    <link rel="stylesheet" href="/src/css/mainstyle.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Great+Vibes&family=Sarabun:wght@300;400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="logo">
+      <h1>Luna <span style="color:#ffce00;font-family:Playfair Display,serif;">ROOM</span></h1>
+      <span>Spa Studio</span>
+    </div>
+        <div class="menu">
+            <a href="index.html" class="active">หน้าแรก</a>
+            <li class="dropdown-menu">
+                <a href="package.html">แพ็กเกจ</a>
+                <ul class="dropdown-content">
+                    <li><a href="massage.html">MASSAGE</a></li>
+                    <li><a href="onsen.html">ONSEN</a></li>
+                    <li><a href="waxing.html">WAXING</a></li>
+                    <li><a href="products.html">PRODUCTS</a></li>
+                </ul>
+            </li>
+            <a href="booking.html">BOOKINGS</a>
+            <a href="aboutpage.html">เกี่ยวกับ</a>
+            <a href="contact.html">ติดต่อ</a>
+            <a href="review.html">รีวิว</a>
+        </div>
+        <div class="user-icon">
+            <img src="https://i.pinimg.com/736x/30/65/54/3065541a80cd4fa53126bfc16e92d930.jpg" alt="User">
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="account-container">
+        <h1 class="page-title">MY ACCOUNT</h1>
+        
+        <div class="account-wrapper">
+            <!-- Sidebar -->
+            <aside class="sidebar">
+                <button class="menu-btn active" data-section="booking-history">
+                    ประวัติการจอง
+                </button>
+                <button class="menu-btn" data-section="order-history">
+                    ประวัติการสั่งซื้อ
+                </button>
+                <button class="menu-btn" data-section="edit-profile">
+                    แก้ไขรายละเอียดส่วนตัว
+                </button>
+                <button class="menu-btn logout-btn" id="logoutBtn">
+                    LOGOUT
+                </button>
+            </aside>
+
+            <!-- Content Area -->
+            <main class="content-area">
+                <!-- ประวัติการจอง -->
+                <section id="booking-history" class="content-section active">
+                    <h2>ประวัติการจอง</h2>
+                    <div class="booking-list">
+                        <!-- การจองที่ยืนยันแล้ว -->
+                        <div class="booking-card">
+                            <div class="booking-header">
+                                <span class="booking-id">รหัสการจอง: #LR20241001</span>
+                                <span class="booking-status status-confirmed">ยืนยันแล้ว</span>
+                            </div>
+                            <div class="booking-details">
+                                <div class="detail-grid">
+                                    <div class="detail-item">
+                                        <span class="detail-label">Treatment Package</span>
+                                        <span class="detail-value">bikini waxing</span>
+                                    </div>
+                                    <div class="detail-item">
+                                        <span class="detail-label">วันที่จอง'</span>
+                                        <span class="detail-value">15 พ.ย. 2024</span>
+                                    </div>
+                                    <div class="detail-item">
+                                        <span class="detail-label">เวลาที่จอง</span>
+                                        <span class="detail-value">9 PM</span>
+                                    </div>
+                                    <div class="detail-item">
+                                        <span class="detail-label">ราคารวม</span>
+                                        <span class="detail-value price">3,500 บาท</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card-actions">
+                                <button class="payment-btn">
+                                    <svg class="btn-icon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <rect x="2" y="5" width="20" height="14" rx="2"/>
+                                        <line x1="2" y1="10" x2="22" y2="10"/>
+                                    </svg>
+                                    ชำระเงิน
+                                </button>
+                                <button class="detail-btn">ดูรายละเอียด</button>
+                            </div>
+                        </div>
+
+                        <!-- การจองที่เสร็จสิ้น -->
+                        <div class="booking-card">
+                            <div class="booking-header">
+                                <span class="booking-id">รหัสการจอง: #LR20240915</span>
+                                <span class="booking-status status-completed">เสร็จสิ้น</span>
+                            </div>
+                            <div class="booking-details">
+                                <div class="detail-grid">
+                                    <div class="detail-item">
+                                        <span class="detail-label">Treatment Package</span>
+                                        <span class="detail-value">bikini waxing</span>
+                                    </div>
+                                    <div class="detail-item">
+                                        <span class="detail-label">วันที่จอง</span>
+                                        <span class="detail-value">20 ก.ย. 2024</span>
+                                    </div>
+                                    <div class="detail-item">
+                                        <span class="detail-label">เวลาที่จอง</span>
+                                        <span class="detail-value">9 AM </span>
+                                    </div>
+                                    <div class="detail-item">
+                                        <span class="detail-label">ราคารวม</span>
+                                        <span class="detail-value price">2,400 บาท</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card-actions">
+                                <button class="detail-btn">ดูรายละเอียด</button>
+                                <button class="review-btn">เขียนรีวิว</button>
+                            </div>
+                        </div>
+
+                        <!-- การจองที่รอดำเนินการ -->
+                        <div class="booking-card">
+                            <div class="booking-header">
+                                <span class="booking-id">รหัสการจอง: #LR20240820</span>
+                                <span class="booking-status status-pending">รอดำเนินการ</span>
+                            </div>
+                            <div class="booking-details">
+                                <div class="detail-grid">
+                                    <div class="detail-item">
+                                        <span class="detail-label">Treatment Package</span>
+                                        <span class="detail-value">bikini waxing</span>
+                                    </div>
+                                    <div class="detail-item">
+                                        <span class="detail-label">วันที่จอง</span>
+                                        <span class="detail-value">5 ธ.ค. 2024</span>
+                                    </div>
+                                    <div class="detail-item">
+                                        <span class="detail-label">เวลาที่จอง</span>
+                                        <span class="detail-value">10 AM</span>
+                                    </div>
+                                    <div class="detail-item">
+                                        <span class="detail-label">ราคารวม</span>
+                                        <span class="detail-value price">5,800 บาท</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card-actions">
+                                <button class="payment-btn">
+                                    <svg class="btn-icon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <rect x="2" y="5" width="20" height="14" rx="2"/>
+                                        <line x1="2" y1="10" x2="22" y2="10"/>
+                                    </svg>
+                                    ชำระเงิน
+                                </button>
+                                <button class="cancel-btn">ยกเลิกการจอง</button>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- ประวัติการสั่งซื้อ -->
+                <section id="order-history" class="content-section">
+                    <h2>ประวัติการสั่งซื้อ</h2>
+                    <div class="order-list">
+                        <!-- คำสั่งซื้อที่จัดส่งแล้ว -->
+                        <div class="order-card">
+                            <div class="order-header">
+                                <span class="order-id">คำสั่งซื้อ: #ORD20241025</span>
+                                <span class="order-status status-delivered">จัดส่งแล้ว</span>
+                            </div>
+                            <div class="order-details">
+                                <div class="detail-grid">
+                                    <div class="detail-item">
+                                        <span class="detail-label">สินค้า</span>
+                                        <span class="detail-value">Luna Room Spa Package</span>
+                                    </div>
+                                    <div class="detail-item">
+                                        <span class="detail-label">วันที่สั่งซื้อ</span>
+                                        <span class="detail-value">25 ต.ค. 2024</span>
+                                    </div>
+                                    <div class="detail-item">
+                                        <span class="detail-label">จำนวน</span>
+                                        <span class="detail-value">1 ชิ้น</span>
+                                    </div>
+                                    <div class="detail-item">
+                                        <span class="detail-label">ราคารวม</span>
+                                        <span class="detail-value price">1,200 บาท</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card-actions">
+                                <button class="detail-btn">ดูรายละเอียด</button>
+        
+                            </div>
+                        </div>
+
+                        <!-- คำสั่งซื้อกำลังจัดส่ง -->
+                        <div class="order-card">
+                            <div class="order-header">
+                                <span class="order-id">คำสั่งซื้อ: #ORD20241015</span>
+                                <span class="order-status status-shipping">กำลังจัดส่ง</span>
+                            </div>
+                            <div class="order-details">
+                                <div class="detail-grid">
+                                    <div class="detail-item">
+                                        <span class="detail-label">สินค้า</span>
+                                        <span class="detail-value">Aromatherapy Essential Oil Set</span>
+                                    </div>
+                                    <div class="detail-item">
+                                        <span class="detail-label">วันที่สั่งซื้อ</span>
+                                        <span class="detail-value">15 ต.ค. 2024</span>
+                                    </div>
+                                    <div class="detail-item">
+                                        <span class="detail-label">จำนวน</span>
+                                        <span class="detail-value">2 ชิ้น</span>
+                                    </div>
+                                    <div class="detail-item">
+                                        <span class="detail-label">ราคารวม</span>
+                                        <span class="detail-value price">1,580 บาท</span>
+                                    </div>
+                                </div>
+                                <div class="tracking-info">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
+                                        <circle cx="12" cy="10" r="3"/>
+                                    </svg>
+                                    <span>เลขพัสดุ: TH1234567890</span>
+                                </div>
+                            </div>
+                            <div class="card-actions">
+                                <button class="detail-btn">ดูรายละเอียด</button>
+                            </div>
+                        </div>
+
+                        <!-- คำสั่งซื้อที่ยกเลิก -->
+                        <div class="order-card">
+                            <div class="order-header">
+                                <span class="order-id">คำสั่งซื้อ: #ORD20241010</span>
+                                <span class="order-status status-cancelled">ยกเลิกแล้ว</span>
+                            </div>
+                            <div class="order-details">
+                                <div class="detail-grid">
+                                    <div class="detail-item">
+                                        <span class="detail-label">สินค้า</span>
+                                        <span class="detail-value">Premium Massage Oil</span>
+                                    </div>
+                                    <div class="detail-item">
+                                        <span class="detail-label">วันที่สั่งซื้อ</span>
+                                        <span class="detail-value">10 ต.ค. 2024</span>
+                                    </div>
+                                    <div class="detail-item">
+                                        <span class="detail-label">จำนวน</span>
+                                        <span class="detail-value">3 ชิ้น</span>
+                                    </div>
+                                    <div class="detail-item">
+                                        <span class="detail-label">ราคารวม</span>
+                                        <span class="detail-value price">890 บาท</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card-actions">
+                                <button class="detail-btn">ดูรายละเอียด</button>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- แก้ไขรายละเอียดส่วนตัว -->
+                <section id="edit-profile" class="content-section">
+                    <h2>แก้ไขรายละเอียดส่วนตัว</h2>
+                    <form class="profile-form">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="firstName">ชื่อ</label>
+                                <input type="text" id="firstName" value="สมชาย" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="lastName">นามสกุล</label>
+                                <input type="text" id="lastName" value="ใจดี" required>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="email">อีเมล</label>
+                            <input type="email" id="email" value="somchai@example.com" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="phone">เบอร์โทรศัพท์</label>
+                            <input type="tel" id="phone" value="0812345678" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="address">ที่อยู่</label>
+                            <textarea id="address" rows="3" required>123 ถนนมิตรภาพ ตำบลในเมือง อำเภอเมือง ขอนแก่น 40000</textarea>
+                        </div>
+
+                        <div class="form-divider"></div>
+                        
+                        <h3>เปลี่ยนรหัสผ่าน</h3>
+                        
+                        <div class="form-group">
+                            <label for="currentPassword">รหัสผ่านปัจจุบัน</label>
+                            <input type="password" id="currentPassword">
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="newPassword">รหัสผ่านใหม่</label>
+                                <input type="password" id="newPassword">
+                            </div>
+                            <div class="form-group">
+                                <label for="confirmPassword">ยืนยันรหัสผ่านใหม่</label>
+                                <input type="password" id="confirmPassword">
+                            </div>
+                        </div>
+
+                        <button type="submit" class="save-btn">บันทึกการเปลี่ยนแปลง</button>
+                    </form>
+                </section>
+            </main>
+        </div>
+    </div>
+
+    <script src="/src/components/account.js"></script>
+</body>
+</html>
