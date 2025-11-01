@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>การจอง - Luna Room Spa Studio</title>
     <link rel="stylesheet" href="/src/css/bookingstyle.css">
+    
 </head>
 <body>
     <!-- Background -->
@@ -19,7 +20,7 @@
     <div class="booking-container">
         <div class="booking-modal">
             <!-- Close Button -->
-            <button class="close-btn" onclick="window.history.back()">
+            <button class="close-btn" onclick="window.location.href='/index.html'">
                 <svg viewBox="0 0 24 24" fill="none">
                     <path d="M6 6L18 18M18 6L6 18" stroke-width="3" stroke-linecap="round"/>
                 </svg>
@@ -80,90 +81,9 @@
         </div>
     </div>
 
-    <script>
-        // Package treatments mapping
-        const treatments = {
-            'massage': [
-                '1.Thai Relaxing Massage - นวดไทยผ่อนคลาย  (350 – 600 ฿ / 60 นาที)',
-                '2.Thai Oil Massage - นวดไทยน้ำมัน  (450 – 700 ฿ / 60 นาที)',
-                '3.Hot Stone Massage - นวดหินร้อน  (600 – 1,200 ฿ / 60 นาที)',
-                '4.Aromatherapy Massage - นวดอโรมาเทอราพี  (600 – 1,000 ฿ / 60 นาที)',
-                '5.Herbal Compress Massage - นวดประคบสมุนไพร  (700 – 1,200 ฿ / 60 นาที)',
-                '6.Leg/Foot/Neck/Shoulder Massage - นวดขา‑เท้า‑คอ‑บ่า‑ไหล่  (300 – 500 ฿ / 30–60 นาที)',
-                '7.Office Syndrome Massage - นวดออฟฟิศซินโดรม  (450 – 700 ฿ / 60 นาที )',
-                '8.Body Scrub / Facial Spa - สครับผิวกาย / สปาหน้า  (500 – 1,000 ฿ / 60 นาที) '
-            ],
-            'onsen': [
-                '1. Hot Bath + Sauna + Steam  (300 ฿)',
-                '2.Public Onsen Bath  (400 – 600 ฿)',
-            ],
-            'waxing': [
-                '1.Underarm Wax  (150 – 250 ฿)',
-                '2.Bikini Line Wax  (400 – 600 ฿)',
-                '3.Full Leg Wax (500 – 700 ฿)',
-                '4.Facial Wax (Forehead, Eyebrows, Sideburns) (899 (โปรโมชั่น) ฿)',
-            ],
-           
-            
-        };
-
-        // Set minimum date to today
-        const dateInput = document.getElementById('date');
-        const today = new Date().toISOString().split('T')[0];
-        dateInput.setAttribute('min', today);
-
-        // Package change handler
-        const packageSelect = document.getElementById('package');
-        const treatmentOptions = document.getElementById('treatmentOptions');
-        const treatmentSelect = document.getElementById('treatment');
-
-        packageSelect.addEventListener('change', function() {
-            const selectedPackage = this.value;
-            
-            // Clear previous options
-            treatmentSelect.innerHTML = '<option value="" disabled selected>เลือกทรีทเมนต์</option>';
-            
-            // Check if package has treatment options
-            if (treatments[selectedPackage]) {
-                // Show treatment options
-                treatmentOptions.classList.add('show');
-                
-                // Add new options
-                treatments[selectedPackage].forEach(treatment => {
-                    const option = document.createElement('option');
-                    option.value = treatment;
-                    option.textContent = treatment;
-                    treatmentSelect.appendChild(option);
-                });
-                
-                treatmentSelect.required = true;
-            } else {
-                // Hide treatment options
-                treatmentOptions.classList.remove('show');
-                treatmentSelect.required = false;
-            }
-        });
-
-        // Form submission
-        document.getElementById('bookingForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            const formData = {
-                date: document.getElementById('date').value,
-                time: document.getElementById('time').value,
-                package: document.getElementById('package').value,
-                treatment: treatmentSelect.value || 'ไม่ระบุ'
-            };
-            
-            console.log('Booking Data:', formData);
-            
-            // Show success message
-            alert(`✅ การจองสำเร็จ!\n\nวันที่: ${formData.date}\nเวลา: ${formData.time}\nแพ็กเกจ: ${formData.package}\nทรีทเมนต์: ${formData.treatment}\n\nเราจะติดต่อกลับไปยืนยันการจองในเร็วๆ นี้ค่ะ`);
-            
-            // Reset form
-            this.reset();
-            treatmentOptions.classList.remove('show');
-        });
-    </script>
+   
+    
+    <script src="\src\scripts\booking.js" type="module"></script>
+    
 </body>
 </html>
