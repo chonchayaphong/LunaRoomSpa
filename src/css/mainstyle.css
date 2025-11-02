@@ -375,14 +375,50 @@ nav {
   color: #a8753b;
 }
 
-footer {
-  background-color: #222;
-  color: #ccc;
-  text-align: center;
-  padding: 20px 0;
-  position: relative;
-  bottom: 0;
-  width: 100%;
+.footer-luna {
+    background: #611b14;
+    color: #fff0a6;
+    font-family: 'Sarabun', sans-serif;
+    padding: 2rem 0;
+    margin-top: 4rem;
+}
+.footer-grid {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 3rem;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+.footer-col {
+    flex: 1 1 0px;
+    min-width: 260px;
+}
+.footer-logo img {
+    display: block;
+    margin-bottom: 3rem;
+}
+.footer-contact h3 {
+    font-family: 'Sarabun', sans-serif;
+    color: white;
+    margin-bottom: 0.8rem;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    font-size: 1.2rem;
+}
+.footer-contact div {
+    font-size: 1rem;
+    margin-bottom: 0.5rem;
+    color: white;
+}
+@media (max-width: 700px) {
+    .footer-grid {
+        flex-direction: column;
+        gap: 1.2rem;
+    }
+    .footer-col {
+        min-width: unset;
+    }
 }
 
 /* ===== ปรับสำหรับมือถือ ===== */
