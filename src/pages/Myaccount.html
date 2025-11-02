@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Account - Luna Room</title>
+    <link rel="stylesheet" href="/src/css/Myaccount.css">
+    <link rel="stylesheet" href="/src/css/mainstyle.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Great+Vibes&family=Sarabun:wght@300;400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="logo">
+      <h1>Luna <span style="color:#ffce00;font-family:Playfair Display,serif;">ROOM</span></h1>
+      <span>Spa Studio</span>
+    </div>
+        <div class="menu">
+      <a href="Users.html" class="active">หน้าแรก</a>
+      <li class="dropdown-menu">
+      <a href="Userpackage.html">แพ็กเกจ</a>
+      <ul class="dropdown-content">
+        <li><a href="Usermassage.html">MASSAGE</a></li>
+        <li><a href="Useronsen.html">ONSEN</a></li>
+        <li><a href="Userwaxing.html">WAXING</a></li>
+        <li><a href="Userproducts.html">PRODUCTS</a></li>
+      </ul>
+    </li>
+      <a href="Useraboutpage.html">เกี่ยวกับ</a>
+      <a href="Usercontact.html">ติดต่อ</a>
+      <a href="Usercontact.html">รีวิว</a>
+
+    <li class="dropdown-menu">
+      <a href="#" id="user-email">Myaccount</a>
+      <ul class="dropdown-content" id="user-dropdown">
+        <li><a href="Myaccount.html">Myaccount</a></li>
+        <li><a href="#" id="logout-btn">Logout</a></li>
+      </ul>
+    </li>
+        </div>
+       
+    </nav>
+
+    <!-- Main Content -->
+    
+    <div class="account-container">
+        <h1 class="page-title">MY ACCOUNT</h1>
+        <div class="account-wrapper">
+            <aside class="sidebar">
+                <button class="menu-btn active" data-section="booking-history">ประวัติการจอง</button>
+                <button class="menu-btn" data-section="order-history">ประวัติการสั่งซื้อ</button>
+                <button class="menu-btn" data-section="edit-profile">แก้ไขรายละเอียดส่วนตัว</button>
+            </aside>
+
+            <main class="content-area">
+                <!-- ประวัติการจอง (ลบทุก booking-card ออกให้หมด เหลือแค่ div.booking-list เปล่าๆ) -->
+                <section id="booking-history" class="content-section active">
+                    <h2>ประวัติการจอง</h2>
+                    <div class="booking-list">
+                        <!-- ประวัติการจองจาก Firestore จะถูก render ในนี้ -->
+                    </div>
+                </section>
+
+                <!-- order-history, edit-profile section -->
+                <!-- ... (คงเหมือนเดิม) ... -->
+
+            </main>
+        </div>
+    </div>
+
+    <script type="module">
+        import { isAuthenticated, signOutUser } from "../scripts/authService.js";
+        import { db, auth } from "../scripts/firebase-config.js";
+        import { collection, query, where, orderBy, getDocs } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
+
+        // 1. Auth check เหมือนเดิม
+        async function check() {
+            const loggedIn = await isAuthenticated();
+            if (!loggedIn) window.location.href = "login.html";
+        }
+        window.addEventListener('DOMContentLoaded', async function() {
+            await check();
+
+            // 2. รอให้ Firebase Auth ดาวน์โหลด user ปัจจุบัน (สำคัญ)
+            auth.onAuthStateChanged(async user => {
+                if (!user) {
+                    // ถ้าไม่ login ก็ redirect ออกเลย
+                    window.location.href = "login.html";
+                    return;
+                }
+                // 3. ดึง booking เฉพาะของ user นี้
+                const q = query(
+                    collection(db, "bookings"),
+                    where("userId", "==", user.uid),
+                    orderBy("createdAt", "desc")
+                );
+                const snapshot = await getDocs(q);
+                const bookingListEl = document.querySelector('.booking-list');
+                bookingListEl.innerHTML = "";
+
+                if (snapshot.empty) {
+                    bookingListEl.innerHTML = '<div style="text-align:center;color:#888;">ไม่พบประวัติการจอง</div>';
+                    return;
+                }
+
+                // 4. ใส่ข้อมูลการจองแต่ละ booking
+                snapshot.forEach(doc => {
+                    const bk = doc.data();
+                    bookingListEl.innerHTML += `
+                        <div class="booking-card"> 
+                            <div class="booking-header">
+                                <span class="booking-id">รหัสการจอง: #${doc.id.slice(0, 10).toUpperCase()}</span>
+                                <span class="booking-status status-pending">${bk.Status || 'รอการดำเนินการ'}</span>
+                            </div>
+                            <div class="booking-details">
+                                <div class="detail-grid">
+                                    <div class="detail-item">
+                                        <span class="detail-label">Package</span>
+                                        <span class="detail-value">${bk.packageName || "-"}</span>
+                                    </div>
+                                    <div class="detail-item">
+                                        <span class="detail-label">ทรีทเมนต์</span>
+                                        <span class="detail-value">${bk.treatmentName || "-"}</span>
+                                    </div>
+                                    <div class="detail-item">
+                                        <span class="detail-label">วันที่จอง</span>
+                                        <span class="detail-value">${bk.date || "-"}</span>
+                                    </div>
+                                    <div class="detail-item">
+                                        <span class="detail-label">เวลา</span>
+                                        <span class="detail-value">${bk.time || "-"}</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    `;
+                });
+            });
+        });
+
+        document.addEventListener('visibilitychange', function() {
+            if (document.visibilityState === 'visible') check();
+        });
+
+        document.getElementById('logout-btn').addEventListener('click', async function(e) {
+            e.preventDefault();
+            await signOutUser();
+            window.location.href = "login.html";
+        });
+
+        document.querySelectorAll('.service-box').forEach(box => {
+            box.addEventListener('click', async (e) => {
+                const loggedIn = await isAuthenticated();
+                if (!loggedIn) {
+                    e.preventDefault();
+                    window.location.href = "login.html";
+                }
+            });
+        });
+    </script>
+</body>
+</html>

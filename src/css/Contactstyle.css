@@ -1,0 +1,375 @@
+
+/* ==================== Main Content ==================== */
+.main-content {
+    min-height: 150vh;
+    background-image: url('/src/assets/image/about1.png');
+    padding: 150px 0 100px;
+    position: relative;
+    background-size: cover;
+    background-position: center;
+    align-items: center;
+
+}
+
+/* ==================== Contact Card ==================== */
+.contact-card {
+    background: rgba(0, 0, 0, 0.5);
+    border-radius: 40px;
+    padding: 60px 80px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(10px);
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.contact-title {
+    font-size: 42px;
+    font-weight: 700;
+    text-align: center;
+    color: #fff;
+    margin-bottom: 20px;
+    letter-spacing: 1px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.contact-subtitle {
+    text-align: center;
+    font-size: 16px;
+    font-weight: 300;
+    line-height: 1.8;
+    margin-bottom: 50px;
+    color: rgba(255, 255, 255, 0.95);
+}
+
+/* ==================== Form Styles ==================== */
+.contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.form-group {
+    width: 100%;
+}
+
+.form-input {
+    width: 100%;
+    padding: 18px 28px;
+    background: #FDB930;
+    border: none;
+    border-radius: 50px;
+    font-size: 16px;
+    font-weight: 500;
+    color: #7B3A3A;
+    font-family: 'Sarabun', sans-serif;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.form-input::placeholder {
+    color: rgba(123, 58, 58, 0.7);
+    font-weight: 400;
+}
+
+.form-input:focus {
+    outline: none;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(253, 185, 48, 0.4);
+    background: #FFCC5C;
+}
+
+.form-textarea {
+    border-radius: 30px;
+    resize: vertical;
+    min-height: 120px;
+    padding: 20px 28px;
+}
+
+/* ==================== Submit Button ==================== */
+.submit-btn {
+    width: 200px;
+    padding: 16px 40px;
+    background: #FDB930;
+    color: #7B3A3A;
+    border: none;
+    border-radius: 50px;
+    font-size: 18px;
+    font-weight: 700;
+    cursor: pointer;
+    margin: 20px auto 0;
+    display: block;
+    transition: all 0.3s ease;
+    font-family: 'Sarabun', sans-serif;
+    letter-spacing: 1px;
+    box-shadow: 0 6px 20px rgba(253, 185, 48, 0.4);
+}
+
+.submit-btn:hover {
+    background: #FFCC5C;
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(253, 185, 48, 0.5);
+}
+
+.submit-btn:active {
+    transform: translateY(-1px);
+}
+
+
+/* ==================== Responsive Design ==================== */
+@media (max-width: 1024px) {
+    .nav {
+        gap: 20px;
+    }
+    
+    .nav-link {
+        font-size: 14px;
+        padding: 6px 12px;
+    }
+    
+    .contact-card {
+        padding: 50px 60px;
+    }
+}
+
+@media (max-width: 768px) {
+    .header .container {
+        flex-wrap: wrap;
+    }
+    
+    .nav {
+        order: 3;
+        width: 100%;
+        justify-content: center;
+        margin-top: 15px;
+        gap: 10px;
+    }
+    
+    .contact-card {
+        padding: 40px 30px;
+        border-radius: 30px;
+    }
+    
+    .contact-title {
+        font-size: 32px;
+    }
+    
+    .contact-subtitle {
+        font-size: 14px;
+    }
+    
+    .form-input {
+        padding: 16px 24px;
+        font-size: 14px;
+    }
+}
+
+@media (max-width: 480px) {
+    
+/* ==================== Main Content ==================== */
+.main-content {
+    padding: 60px 0 100px;
+}
+
+/* ==================== Contact Card ==================== */
+.contact-card {
+    background: linear-gradient(135deg, rgba(166, 77, 77, 0.8) 0%, rgba(139, 69, 69, 0.8) 100%);
+    border-radius: 40px;
+    padding: 60px 80px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(10px);
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.contact-title {
+    font-size: 42px;
+    font-weight: 700;
+    text-align: center;
+    color: #fff;
+    margin-bottom: 20px;
+    letter-spacing: 1px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.contact-subtitle {
+    text-align: center;
+    font-size: 16px;
+    font-weight: 300;
+    line-height: 1.8;
+    margin-bottom: 50px;
+    color: rgba(255, 255, 255, 0.95);
+}
+
+/* ==================== Form Styles ==================== */
+.contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.form-group {
+    width: 100%;
+}
+
+.form-input {
+    width: 100%;
+    padding: 18px 28px;
+    background: #FDB930;
+    border: none;
+    border-radius: 50px;
+    font-size: 16px;
+    font-weight: 500;
+    color: #7B3A3A;
+    font-family: 'Sarabun', sans-serif;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.form-input::placeholder {
+    color: rgba(123, 58, 58, 0.7);
+    font-weight: 400;
+}
+
+.form-input:focus {
+    outline: none;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(253, 185, 48, 0.4);
+    background: #FFCC5C;
+}
+
+.form-textarea {
+    border-radius: 30px;
+    resize: vertical;
+    min-height: 120px;
+    padding: 20px 28px;
+}
+
+/* ==================== Submit Button ==================== */
+.submit-btn {
+    width: 200px;
+    padding: 16px 40px;
+    background: #FDB930;
+    color: #7B3A3A;
+    border: none;
+    border-radius: 50px;
+    font-size: 18px;
+    font-weight: 700;
+    cursor: pointer;
+    margin: 20px auto 0;
+    display: block;
+    transition: all 0.3s ease;
+    font-family: 'Sarabun', sans-serif;
+    letter-spacing: 1px;
+    box-shadow: 0 6px 20px rgba(253, 185, 48, 0.4);
+}
+
+.submit-btn:hover {
+    background: #FFCC5C;
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(253, 185, 48, 0.5);
+}
+
+.submit-btn:active {
+    transform: translateY(-1px);
+}
+
+/* ==================== Footer ==================== */
+.footer {
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.footer-indicator {
+    width: 60px;
+    height: 8px;
+    background: rgba(255, 255, 255, 0.4);
+    border-radius: 10px;
+}
+
+/* ==================== Responsive Design ==================== */
+@media (max-width: 1024px) {
+    .nav {
+        gap: 20px;
+    }
+    
+    .nav-link {
+        font-size: 14px;
+        padding: 6px 12px;
+    }
+    
+    .contact-card {
+        padding: 50px 60px;
+    }
+}
+
+@media (max-width: 768px) {
+    .header .container {
+        flex-wrap: wrap;
+    }
+    
+    .nav {
+        order: 3;
+        width: 100%;
+        justify-content: center;
+        margin-top: 15px;
+        gap: 10px;
+    }
+    
+    .contact-card {
+        padding: 40px 30px;
+        border-radius: 30px;
+    }
+    
+    .contact-title {
+        font-size: 32px;
+    }
+    
+    .contact-subtitle {
+        font-size: 14px;
+    }
+    
+    .form-input {
+        padding: 16px 24px;
+        font-size: 14px;
+    }
+}
+
+@media (max-width: 480px) {
+    .logo {
+  display: flex;
+  flex-direction: column;
+  line-height: 1;
+}
+
+.logo h1 {
+  font-family: 'Great Vibes', cursive;
+  color: #ffce00;
+  font-size: 50px;
+}
+
+.logo span {
+  font-size: 17px;
+  letter-spacing: 1px;
+}
+}
+    
+    .contact-card {
+        padding: 30px 20px;
+    }
+    
+    .contact-title {
+        font-size: 26px;
+    }
+    
+    .nav-link {
+        font-size: 12px;
+        padding: 5px 10px;
+    }
+    
+    .login-btn {
+        font-size: 14px;
+        padding: 6px 18px;
+    }
+}

@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>เกี่ยวกับ - Luna Room Spa Studio</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Great+Vibes&family=Sarabun:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/src/css/aboutstyle.css">
+    <link rel="stylesheet" href="/src/css/mainstyle.css">
+    <link rel="stylesheet" href="/src/css/ProductMainstyle.css">
+</head>
+<body>
+    <!-- Header Navigation -->
+    <header class="header">
+       <nav>
+    <div class="logo">
+      <h1>Luna <span style="color:#ffce00;font-family:Playfair Display,serif;">ROOM</span></h1>
+      <span>Spa Studio</span>
+    </div>
+    <div class="menu">
+      <a href="Users.html" class="active">หน้าแรก</a>
+      <li class="dropdown-menu">
+      <a href="Userpackage.html">แพ็กเกจ</a>
+      <ul class="dropdown-content">
+        <li><a href="Usermassage.html">MASSAGE</a></li>
+        <li><a href="Useronsen.html">ONSEN</a></li>
+        <li><a href="Userwaxing.html">WAXING</a></li>
+        <li><a href="Userproducts.html">PRODUCTS</a></li>
+      </ul>
+    </li>
+      <a href="Useraboutpage.html">เกี่ยวกับ</a>
+      <a href="Usercontact.html">ติดต่อ</a>
+      <a href="Userreview.html">รีวิว</a>
+
+    <li class="dropdown-menu">
+      <a href="#" id="user-email">Myaccount</a>
+      <ul class="dropdown-content" id="user-dropdown">
+        <li><a href="Myaccount.html">Myaccount</a></li>
+        <li><a href="#" id="logout-btn">Logout</a></li>
+      </ul>
+    </li>
+      
+      <button class="cart-btn" onclick="toggleCart()">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="9" cy="21" r="1"></circle>
+                        <circle cx="20" cy="21" r="1"></circle>
+                        <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+                    </svg>
+                    <span class="cart-count" id="cartCount">0</span>
+                </button>
+    </div>
+    </header>
+
+    <!-- Hero Section with Background -->
+    <section class="hero-about">
+        <div class="overlay"></div>
+        <div class="container">
+            <div class="about-content">
+                <h1 class="about-title">LUNA ROOM</h1>
+                
+                <div class="about-text">
+                    <p class="highlight-text">
+                        ความงามที่ผสานความผ่อนคลายอย่างลงตัว
+                    </p>
+                    
+                    <p>
+                        ก่อตั้งในปี <strong>2006</strong> ด้วยความตั้งใจที่จะสร้างสรรค์พื้นที่แห่งความสงบ ที่ซึ่งทุกคนสามารถพักผ่อนและค้นพบความงามในแบบของตนเอง
+                    </p>
+                    
+                    <p>
+                        <strong>LUNA ROOM</strong> คือสปาแบบครบวงจรที่ให้บริการดูแลทั้งผิวพรรณ ร่างกาย และจิตใจอย่างสมบูรณ์แบบ
+                    </p>
+                    
+                    <p>
+                        เราดำเนินงานโดย ทีมผู้เชี่ยวชาญด้านความงามที่มีประสบการณ์และความทุ่มเท พร้อมมอบบริการด้วยความใส่ใจในทุกรายละเอียด เพื่อให้ทุกครั้งที่คุณก้าวเข้ามา คือช่วงเวลาแห่งการผ่อนคลายอย่างแท้จริง
+                    
+                    <p class="mission-text">
+                        ที่ <strong>LUNA ROOM</strong> เราเลือกใช้เฉพาะ ผลิตภัณฑ์พรีเมียมคุณภาพสูงสุด ผ่านการคัดสรรอย่างพิถีพิถัน เพื่อให้คุณสัมผัสได้ถึงความแตกต่างตั้งแต่ครั้งแรกที่มาเยือน
+                    </p>
+                    
+                    <p class="quote-text">
+                        “Luna Room — สถานที่ที่ความงามและความสงบมาบรรจบกันอย่างลงตัว”
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Decorative Bottom Image Section -->
+    <section class="spa-showcase">
+        <div class="showcase-overlay"></div>
+    </section>
+
+
+    <script type="module">
+      import { isAuthenticated, signOutUser } from "../scripts/authService.js";
+
+      // CHECK LOGIN ทุกครั้ง
+      async function check() {
+        const loggedIn = await isAuthenticated();
+        if (!loggedIn) window.location.href = "login.html";
+      }
+      window.addEventListener('DOMContentLoaded', check);
+      document.addEventListener('visibilitychange', function() {
+        if (document.visibilityState === 'visible') check();
+      });
+
+      // logout handler
+      document.getElementById('logout-btn').addEventListener('click', async function(e) {
+        e.preventDefault();
+        await signOutUser();
+        window.location.href = "login.html";
+      });
+
+      // บล็อก service-box ให้ต้อง login ก่อน
+      document.querySelectorAll('.service-box').forEach(box => {
+        box.addEventListener('click', async (e) => {
+          const loggedIn = await isAuthenticated();
+          if (!loggedIn) {
+            e.preventDefault();
+            window.location.href = "login.html";
+          }
+        });
+      });
+</script>
+</body>
+</html>

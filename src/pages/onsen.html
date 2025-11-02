@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Luna Room Spa Studio - Products</title>
+    <link rel="stylesheet" href="/src/css/OnsenMainstyle.css">
+    <link rel="stylesheet" href="/src/css/mainstyle.css">
+    <link rel="stylesheet" href="/src/css/ProductMainstyle.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Great+Vibes&display=swap" rel="stylesheet">
+
+</head>
+<body>
+    <header>
+        <nav>
+    <div class="logo">
+      <h1>Luna <span style="color:#ffce00;font-family:Playfair Display,serif;">ROOM</span></h1>
+      <span>Spa Studio</span>
+    </div>
+    <div class="menu">
+      <a href="http://localhost:5173/" >หน้าแรก</a>
+      <li class="dropdown-menu">
+      <a href="package.html" class="active">แพ็กเกจ</a>
+      <ul class="dropdown-content">
+        <li><a href="massage.html">MASSAGE</a></li>
+        <li><a href="onsen.html">ONSEN</a></li>
+        <li><a href="waxing.html">WAXING</a></li>
+        <li><a href="products.html">PRODUCTS</a></li>
+      </ul>
+    </li>
+      <a href="booking.html">BOOKINGS</a>
+      <a href="aboutpage.html">เกี่ยวกับ</a>
+      <a href="contact.html">ติดต่อ</a>
+      <a href="review.html">รีวิว</a>
+      <a href="login.html">เข้าสู่ระบบ</a>
+      <button class="cart-btn" onclick="toggleCart()">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="9" cy="21" r="1"></circle>
+                        <circle cx="20" cy="21" r="1"></circle>
+                        <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+                    </svg>
+                    <span class="cart-count" id="cartCount">0</span>
+                </button>
+    </div>
+    </header>
+
+        <main>
+        <div class="onsen-container">
+            <div class="onsen-content">
+                 <div class="onsen-image">
+                    <img src="/src/assets/image/onzen.png" alt="Spa Products">
+                 </div>
+                <h1 class="onsen-title">ONSEN</h1>
+                <p class="onsen-description">
+                    เปลดปล่อยความเหนื่อยล้าและคืนสมดุลให้ร่างกายกับประสบการณ์
+                    ออนเซ็นสุดผ่อนคลาย ด้วยน้ำแร่แท้นำเข้าจากเมืองเกโระ 
+                    ประเทศญี่ปุ่น ที่เราปรับอุณหภูมิให้เหมาะสมต่อผิวกาย
+                    พร้อมบรรยากาศเงียบสงบสไตล์ญี่ปุ่นแท้
+                    เพลิดเพลินกับการแช่ตัวท่ามกลางกลิ่นหอมละมุน ช่วยให้กล้ามเนื้อ
+                    ผ่อนคลาย กระตุ้นการไหลเวียนโลหิต และฟื้นฟูพลังในตัวคุณอีกครั้ง
+                </p>
+
+                <div class="onsen-list">
+                    <div class="onsen-item">
+                        <div class="onsen-info">
+                            <span class="onsen-number">1.</span>
+                            <div class="onsen-details">
+                                <h3 class="onsen-name">Hot Bath + Sauna + Steam</h3>
+                                <p class="onsen-subtitle">แช่น้ำร้อน + ซาวน่า + สตรีม</p>
+                            </div>
+                        </div>
+                        <span class="onsen-price">300 ฿</span>
+                        <a href="booking.html">
+                            <button class="order-btn">BOOKING</button>
+                          </a>
+                    </div>
+
+                    <div class="onsen-item">
+                        <div class="onsen-info">
+                            <span class="onsen-number">2.</span>
+                            <div class="onsen-details">
+                                <h3 class="onsen-name">Public Onsen Bath</h3>
+                                <p class="onsen-subtitle">แช่ออนเซ็นสาธารณะ</p>
+                            </div>
+                        </div>
+                        <span class="onsen-price">400 – 600 ฿</span>
+                        <a href="booking.html">
+                            <button class="order-btn">BOOKING</button>
+                          </a>
+                    </div>
+                </div>
+            </div>
+
+           
+        </div>
+    </main>
+<footer>
+  <p>&copy; 2024 Luna Room Spa Studio. All rights reserved.</p>
+</footer>
+</body>
+</html>

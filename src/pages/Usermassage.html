@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Luna Room Spa Studio - Products</title>
+    <link rel="stylesheet" href="/src/css/MassageMainstyle.css">
+    <link rel="stylesheet" href="/src/css/mainstyle.css">
+    <link rel="stylesheet" href="/src/css/ProductMainstyle.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Great+Vibes&display=swap" rel="stylesheet">
+
+</head>
+<body>
+    <header>
+        <nav>
+    <div class="logo">
+      <h1>Luna <span style="color:#ffce00;font-family:Playfair Display,serif;">ROOM</span></h1>
+      <span>Spa Studio</span>
+    </div>
+    <div class="menu">
+      <a href="Users.html" class="active">หน้าแรก</a>
+      <li class="dropdown-menu">
+      <a href="Userpackage.html">แพ็กเกจ</a>
+      <ul class="dropdown-content">
+        <li><a href="Usermassage.html">MASSAGE</a></li>
+        <li><a href="Useronsen.html">ONSEN</a></li>
+        <li><a href="Userwaxing.html">WAXING</a></li>
+        <li><a href="Userproducts.html">PRODUCTS</a></li>
+      </ul>
+    </li>
+      <a href="Useraboutpage.html">เกี่ยวกับ</a>
+      <a href="Usercontact.html">ติดต่อ</a>
+      <a href="Userreview.html">รีวิว</a>
+      <li class="dropdown-menu">
+      <a href="#" id="user-email">Myaccount</a>
+      <ul class="dropdown-content" id="user-dropdown">
+        <li><a href="Myaccount.html">Myaccount</a></li>
+        <li><a href="#" id="logout-btn">Logout</a></li>
+      </ul>
+    </li>
+      <button class="cart-btn" onclick="toggleCart()">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="9" cy="21" r="1"></circle>
+                        <circle cx="20" cy="21" r="1"></circle>
+                        <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+                    </svg>
+                    <span class="cart-count" id="cartCount">0</span>
+                </button>
+    </div>
+    </header>
+
+        <main>
+        <div class="massage-container">
+            <div class="massage-content">
+                 <div class="massage-image">
+                    <img src="/src/assets/image/massage.png" alt="Spa Products">
+                 </div>
+                <h1 class="massage-title">WAXING</h1>
+                <p class="massage-description">
+                    เผยผิวสวยเรียบเนียน ด้วยแว็กซ์สุดพรีเมียมจากฝรั่งเศส Cirepil
+                    by Perron Rigot สูตรอุณหภูมิต่ำที่อ่อนโยนต่อทุกสภาพผิว
+                    ช่วยกำจัดขนอย่างล้ำลึกโดยไม่ทำร้ายผิว
+                    ปราศจากความเหนียวเหนอะหนะหลังแว็กซ์ พร้อมลดรอยแดงและ
+                    ขนคุด ให้ผิวเนียนใสอย่างมั่นใจ
+                </p>
+
+                <div class="massage-list">
+                    <div class="massage-item">
+                        <div class="massage-info">
+                            <span class="massage-number">1.</span>
+                            <div class="massage-details">
+                                <h3 class="massage-name">Thai Relaxing Massage</h3>
+                                <p class="massage-subtitle">นวดไทยผ่อนคลาย</p>
+                            </div>
+                        </div>
+                        <span class="massage-price">350 – 600 ฿ / 60 นาที</span>
+                        <a href="UserBooking.html">
+                            <button class="order-btn">BOOKING</button>
+                          </a>
+                    </div>
+
+                    <div class="massage-item">
+                        <div class="massage-info">
+                            <span class="massage-number">2.</span>
+                            <div class="massage-details">
+                                <h3 class="massage-name">Thai Oil Massage</h3>
+                                <p class="massage-subtitle">นวดไทยน้ำมัน</p>
+                            </div>
+                        </div>
+                        <span class="massage-price">450 – 700 ฿ / 60 นาที </span>
+                        <a href="UserBooking.html">
+                            <button class="order-btn">BOOKING</button>
+                          </a>
+                    </div>
+
+                    <div class="massage-item">
+                        <div class="massage-info">
+                            <span class="massage-number">3.</span>
+                            <div class="massage-details">
+                                <h3 class="massage-name">Hot Stone Massage</h3>
+                                <p class="massage-subtitle">นวดหินร้อน</p>
+                            </div>
+                        </div>
+                        <span class="massage-price">600 – 1,200 ฿ / 60 นาที </span>
+                        <a href="UserBooking.html">
+                            <button class="order-btn">BOOKING</button>
+                          </a>
+                    </div>
+
+                    <div class="massage-item">
+                        <div class="massage-info">
+                            <span class="massage-number">4.</span>
+                            <div class="massage-details">
+                                <h3 class="massage-name">Aromatherapy Massage</h3>
+                                <p class="massage-subtitle">นวดอโรมาเทอราพี</p>
+                            </div>
+                        </div>
+                        <span class="massage-price">600 – 1,000 ฿ / 60 นาที</span>
+                        <a href="UserBooking.html">
+                            <button class="order-btn">BOOKING</button>
+                          </a>
+                    </div>
+
+                    <div class="massage-item">
+                        <div class="massage-info">
+                            <span class="massage-number">5.</span>
+                            <div class="massage-details">
+                                <h3 class="massage-name">Herbal Compress Massage</h3>
+                                <p class="massage-subtitle">นวดประคบสมุนไพร</p>
+                            </div>
+                        </div>
+                        <span class="massage-price">700 – 1,200 ฿ / 60 นาที</span>
+                        <a href="UserBooking.html">
+                            <button class="order-btn">BOOKING</button>
+                          </a>
+                    </div>
+
+                    <div class="massage-item">
+                        <div class="massage-info">
+                            <span class="massage-number">6.</span>
+                            <div class="massage-details">
+                                <h3 class="massage-name">Leg/Foot/Neck/Shoulder Massage</h3>
+                                <p class="massage-subtitle">นวดขา‑เท้า‑คอ‑บ่า‑ไหล่</p>
+                            </div>
+                        </div>
+                        <span class="massage-price">300 – 500 ฿ / 30–60 นาที</span>
+                        <a href="UserBooking.html">
+                            <button class="order-btn">BOOKING</button>
+                          </a>
+                    </div>
+
+                    <div class="massage-item">
+                        <div class="massage-info">
+                            <span class="massage-number">7.</span>
+                            <div class="massage-details">
+                                <h3 class="massage-name">Office Syndrome Massage</h3>
+                                <p class="massage-subtitle">นวดออฟฟิศซินโดรม</p>
+                            </div>
+                        </div>
+                        <span class="massage-price">450 – 700 ฿ / 60 นาที</span>
+                        <a href="UserBooking.html">
+                            <button class="order-btn">BOOKING</button>
+                          </a>
+                    </div>
+
+                    <div class="massage-item">
+                        <div class="massage-info">
+                            <span class="massage-number">8.</span>
+                            <div class="massage-details">
+                                <h3 class="massage-name">Body Scrub / Facial Spa</h3>
+                                <p class="massage-subtitle">สครับผิวกาย / สปาหน้า</p>
+                            </div>
+                        </div>
+                        <span class="massage-price">500 – 1,000 ฿ / 60 นาที </span>
+                        <a href="UserBooking.html">
+                            <button class="order-btn">BOOKING</button>
+                          </a>
+                    </div>
+                </div>
+            </div>
+
+           
+        </div>
+    </main>
+<footer>
+  <p>&copy; 2024 Luna Room Spa Studio. All rights reserved.</p>
+</footer>
+
+<script type="module">
+      import { isAuthenticated, signOutUser } from "../scripts/authService.js";
+
+      // CHECK LOGIN ทุกครั้ง
+      async function check() {
+        const loggedIn = await isAuthenticated();
+        if (!loggedIn) window.location.href = "login.html";
+      }
+      window.addEventListener('DOMContentLoaded', check);
+      document.addEventListener('visibilitychange', function() {
+        if (document.visibilityState === 'visible') check();
+      });
+
+      // logout handler
+      document.getElementById('logout-btn').addEventListener('click', async function(e) {
+        e.preventDefault();
+        await signOutUser();
+        window.location.href = "login.html";
+      });
+
+      // บล็อก service-box ให้ต้อง login ก่อน
+      document.querySelectorAll('.service-box').forEach(box => {
+        box.addEventListener('click', async (e) => {
+          const loggedIn = await isAuthenticated();
+          if (!loggedIn) {
+            e.preventDefault();
+            window.location.href = "login.html";
+          }
+        });
+      });
+</script>
+</body>
+</html>

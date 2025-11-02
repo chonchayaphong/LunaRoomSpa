@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Luna Room Spa Studio</title>
+    <link rel="stylesheet" href="/src/css/loginstyle.css">
+</head>
+<body>
+    <!-- Background with blur effect -->
+    <div class="background-image"></div>
+    <div class="background-overlay"></div>
+
+    <!-- Login Modal -->
+    <div class="login-container">
+        <div class="login-modal">
+            <!-- Close Button -->
+            <button class="close-btn" onclick="window.location.href='index.html'">
+                <svg width="30" height="30" viewBox="0 0 30 30" fill="none">
+                    <path d="M7.5 7.5L22.5 22.5M22.5 7.5L7.5 22.5" stroke="white" stroke-width="3" stroke-linecap="round"/>
+                </svg>
+            </button>
+
+            <!-- Header -->
+            <h1 class="login-title">LOGIN / เข้าสู่ระบบ</h1>
+            <div class="title-divider"></div>
+
+            <!-- Alert Message -->
+            <div id="alertMessage" class="alert-message"></div>
+
+            <!-- Login Form -->
+            <form class="login-form" id="loginForm">
+                <!-- Email Input -->
+                <div class="input-group">
+                    <input 
+                        type="email" 
+                        id="email" 
+                        class="input-field" 
+                        placeholder="EMAIL"
+                        required
+                    >
+                </div>
+
+                <!-- Password Input -->
+                <div class="input-group">
+                    <input 
+                        type="password" 
+                        id="password" 
+                        class="input-field" 
+                        placeholder="PASSWORD"
+                        required
+                    >
+                </div>
+
+                <!-- Remember Me & Forgot Password -->
+                <div class="form-options">
+                    <label class="remember-me">
+                        <input type="checkbox" id="remember">
+                        <span class="checkmark"></span>
+                        <span class="remember-text">REMEMBER ME</span>
+                    </label>
+                    <a href="#" id="forgotPasswordLink" class="forgot-password">FORGOT PASSWORD</a>
+                </div>
+
+                <!-- Login Button -->
+                <button type="submit" id="loginBtn" class="login-btn">
+                    <span class="btn-text">LOGIN</span>
+                    <span class="btn-loader" style="display: none;">
+                        <svg width="20" height="20" viewBox="0 0 50 50">
+                            <circle cx="25" cy="25" r="20" fill="none" stroke="white" stroke-width="5" stroke-dasharray="31.4 31.4" stroke-linecap="round">
+                                <animateTransform attributeName="transform" type="rotate" from="0 25 25" to="360 25 25" dur="1s" repeatCount="indefinite"/>
+                            </circle>
+                        </svg>
+                    </span>
+                </button>
+
+                
+
+                <!-- Sign Up Link -->
+                <div class="signup-link">
+                    DON'T HAVE AN ACCOUNT? 
+                    <a href="register.html">SIGN UP</a>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Styles for Alert and Loading -->
+    <style>
+        .alert-message {
+            display: none;
+            padding: 12px 20px;
+            margin-bottom: 20px;
+            border-radius: 8px;
+            font-size: 14px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .alert-message.show {
+            display: block;
+            animation: slideDown 0.3s ease;
+        }
+
+        .alert-message.success {
+            background: rgba(76, 175, 80, 0.2);
+            color: #4caf50;
+            border: 1px solid #4caf50;
+        }
+
+        .alert-message.error {
+            background: rgba(244, 67, 54, 0.2);
+            color: #f44336;
+            border: 1px solid #f44336;
+        }
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .login-btn {
+            position: relative;
+        }
+
+        .login-btn.loading .btn-text {
+            visibility: hidden;
+        }
+
+        .login-btn.loading .btn-loader {
+            display: flex !important;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .login-btn:disabled {
+            opacity: 0.7;
+            cursor: not-allowed;
+        }
+    </style>
+
+    <script type="module">
+        import { signIn, resetPassword, onAuthChange } from '/src/scripts/authService.js';
+        
+
+
+        
+
+        // Elements
+        const loginForm = document.getElementById('loginForm');
+        const loginBtn = document.getElementById('loginBtn');
+        const emailInput = document.getElementById('email');
+        const passwordInput = document.getElementById('password');
+        const rememberCheckbox = document.getElementById('remember');
+        const forgotPasswordLink = document.getElementById('forgotPasswordLink');
+        const alertMessage = document.getElementById('alertMessage');
+        const btnText = loginBtn.querySelector('.btn-text');
+        const btnLoader = loginBtn.querySelector('.btn-loader');
+
+        // Check if user is already logged in
+        onAuthChange((user, userData) => {
+            if (user) {
+                console.log('User already logged in:', userData);
+                // Uncomment to auto-redirect
+                // window.location.href = 'booking.html';
+            }
+        });
+
+        // Firebase Configuration - ใส่ Config ของคุณตรงนี้
+        const firebaseConfig = {
+            apiKey: "AIzaSyBySeWqMxCrBI4oIEXwaCJnsjUbPW3afN4",
+            authDomain: "lunaroomspa.firebaseapp.com",
+            databaseURL: "https://lunaroomspa-default-rtdb.asia-southeast1.firebasedatabase.app",
+            projectId: "lunaroomspa",
+            storageBucket: "lunaroomspa.firebasestorage.app",
+            messagingSenderId: "299973663585",
+            appId: "1:299973663585:web:9c3a5be0768e1eaa58c320",
+            measurementId: "G-5KF6ZJ7XDW"
+        };
+
+        // Load saved email if "Remember Me" was checked
+        window.addEventListener('DOMContentLoaded', () => {
+            const savedEmail = localStorage.getItem('rememberedEmail');
+            if (savedEmail) {
+                emailInput.value = savedEmail;
+                rememberCheckbox.checked = true;
+            }
+        });
+
+        // Show Alert Message
+        function showAlert(message, type = 'success') {
+            alertMessage.textContent = message;
+            alertMessage.className = `alert-message ${type} show`;
+            
+            setTimeout(() => {
+                alertMessage.classList.remove('show');
+            }, 5000);
+        }
+
+        // Set Loading State
+        function setLoading(isLoading) {
+            if (isLoading) {
+                loginBtn.classList.add('loading');
+                loginBtn.disabled = true;
+                btnLoader.style.display = 'flex';
+            } else {
+                loginBtn.classList.remove('loading');
+                loginBtn.disabled = false;
+                btnLoader.style.display = 'none';
+            }
+        }
+
+        // Handle Login Form Submit
+        loginForm.addEventListener('submit', async (event) => {
+            event.preventDefault();
+            
+            const email = emailInput.value.trim();
+            const password = passwordInput.value;
+            const remember = rememberCheckbox.checked;
+
+            // Validate inputs
+            if (!email || !password) {
+                showAlert('กรุณากรอกอีเมลและรหัสผ่าน', 'error');
+                return;
+            }
+
+            // Start loading
+            setLoading(true);
+
+            try {
+                // Attempt to sign in
+                const result = await signIn(email, password);
+
+                if (result.success) {
+                    console.log('Login successful:', result.userData);
+                    
+                    // Save email if "Remember Me" is checked
+                    if (remember) {
+                        localStorage.setItem('rememberedEmail', email);
+                    } else {
+                        localStorage.removeItem('rememberedEmail');
+                    }
+
+                    // Show success message
+                    showAlert('เข้าสู่ระบบสำเร็จ! กำลังพาคุณไปยังหน้าหลัก...', 'success');
+
+                    setLoading(false);
+                    
+                    // Redirect after 1.5 seconds
+                    setTimeout(() => {
+                        window.location.href = 'Users.html';
+                    }, 1500);
+                } else {
+                    // Show error message
+                    let errorMessage = 'เข้าสู่ระบบไม่สำเร็จ';
+                    
+                    // Customize error messages
+                    if (result.error.includes('user-not-found')) {
+                        errorMessage = 'ไม่พบอีเมลนี้ในระบบ';
+                    } else if (result.error.includes('wrong-password') || result.error.includes('invalid-credential')) {
+                        errorMessage = 'อีเมลหรือรหัสผ่านไม่ถูกต้อง';
+                    } else if (result.error.includes('invalid-email')) {
+                        errorMessage = 'รูปแบบอีเมลไม่ถูกต้อง';
+                    } else if (result.error.includes('too-many-requests')) {
+                        errorMessage = 'พยายามเข้าสู่ระบบหลายครั้งเกินไป กรุณารอสักครู่';
+                    } else if (result.error.includes('network')) {
+                        errorMessage = 'เกิดข้อผิดพลาดในการเชื่อมต่อ กรุณาตรวจสอบอินเทอร์เน็ต';
+                    }
+                    
+                    showAlert(errorMessage, 'error');
+                    setLoading(false);
+                }
+            } catch (error) {
+                console.error('Login error:', error);
+                showAlert('เกิดข้อผิดพลาดที่ไม่คาดคิด กรุณาลองใหม่อีกครั้ง', 'error');
+                setLoading(false);
+            }
+        });
+
+        // Handle Forgot Password
+        forgotPasswordLink.addEventListener('click', async (event) => {
+            event.preventDefault();
+            
+            const email = emailInput.value.trim();
+            
+            if (!email) {
+                showAlert('กรุณากรอกอีเมลก่อนคลิก "FORGOT PASSWORD"', 'error');
+                emailInput.focus();
+                return;
+            }
+
+            // Validate email format
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailRegex.test(email)) {
+                showAlert('รูปแบบอีเมลไม่ถูกต้อง', 'error');
+                return;
+            }
+
+            const confirmed = confirm(`ส่งลิงก์รีเซ็ตรหัสผ่านไปที่ ${email} หรือไม่?`);
+            if (!confirmed) return;
+
+
+            try {
+                const result = await resetPassword(email);
+                
+                setLoading(false);
+                
+                if (result.success) {
+                    showAlert('ส่งลิงก์รีเซ็ตรหัสผ่านไปยังอีเมลของคุณแล้ว กรุณาตรวจสอบอีเมล', 'success');
+                } else {
+                    let errorMessage = 'ไม่สามารถส่งลิงก์รีเซ็ตรหัสผ่านได้';
+                    
+                    if (result.error.includes('user-not-found')) {
+                        errorMessage = 'ไม่พบอีเมลนี้ในระบบ';
+                    } else if (result.error.includes('invalid-email')) {
+                        errorMessage = 'รูปแบบอีเมลไม่ถูกต้อง';
+                    }
+                    
+                    showAlert(errorMessage, 'error');
+                }
+            } catch (error) {
+                console.error('Reset password error:', error);
+                showAlert('เกิดข้อผิดพลาด กรุณาลองใหม่อีกครั้ง', 'error');
+            }
+        });
+    </script>
+</body>
+</html>

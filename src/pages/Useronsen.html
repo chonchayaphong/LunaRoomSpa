@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Luna Room Spa Studio - Products</title>
+    <link rel="stylesheet" href="/src/css/OnsenMainstyle.css">
+    <link rel="stylesheet" href="/src/css/mainstyle.css">
+    <link rel="stylesheet" href="/src/css/ProductMainstyle.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Great+Vibes&display=swap" rel="stylesheet">
+
+</head>
+<body>
+    <header>
+        <nav>
+    <div class="logo">
+      <h1>Luna <span style="color:#ffce00;font-family:Playfair Display,serif;">ROOM</span></h1>
+      <span>Spa Studio</span>
+    </div>
+    <div class="menu">
+      <a href="Users.html" class="active">หน้าแรก</a>
+      <li class="dropdown-menu">
+      <a href="Userpackage.html">แพ็กเกจ</a>
+      <ul class="dropdown-content">
+        <li><a href="Usermassage.html">MASSAGE</a></li>
+        <li><a href="Useronsen.html">ONSEN</a></li>
+        <li><a href="Userwaxing.html">WAXING</a></li>
+        <li><a href="Userproducts.html">PRODUCTS</a></li>
+      </ul>
+    </li>
+      <a href="Useraboutpage.html">เกี่ยวกับ</a>
+      <a href="Usercontact.html">ติดต่อ</a>
+      <a href="Userreview.html">รีวิว</a>
+
+    <li class="dropdown-menu">
+      <a href="#" id="user-email">Myaccount</a>
+      <ul class="dropdown-content" id="user-dropdown">
+        <li><a href="Myaccount.html">Myaccount</a></li>
+        <li><a href="#" id="logout-btn">Logout</a></li>
+      </ul>
+    </li>
+
+      <button class="cart-btn" onclick="toggleCart()">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="9" cy="21" r="1"></circle>
+                        <circle cx="20" cy="21" r="1"></circle>
+                        <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+                    </svg>
+                    <span class="cart-count" id="cartCount">0</span>
+                </button>
+    </div>
+    </header>
+
+        <main>
+        <div class="onsen-container">
+            <div class="onsen-content">
+                 <div class="onsen-image">
+                    <img src="/src/assets/image/onzen.png" alt="Spa Products">
+                 </div>
+                <h1 class="onsen-title">ONSEN</h1>
+                <p class="onsen-description">
+                    เปลดปล่อยความเหนื่อยล้าและคืนสมดุลให้ร่างกายกับประสบการณ์
+                    ออนเซ็นสุดผ่อนคลาย ด้วยน้ำแร่แท้นำเข้าจากเมืองเกโระ 
+                    ประเทศญี่ปุ่น ที่เราปรับอุณหภูมิให้เหมาะสมต่อผิวกาย
+                    พร้อมบรรยากาศเงียบสงบสไตล์ญี่ปุ่นแท้
+                    เพลิดเพลินกับการแช่ตัวท่ามกลางกลิ่นหอมละมุน ช่วยให้กล้ามเนื้อ
+                    ผ่อนคลาย กระตุ้นการไหลเวียนโลหิต และฟื้นฟูพลังในตัวคุณอีกครั้ง
+                </p>
+
+                <div class="onsen-list">
+                    <div class="onsen-item">
+                        <div class="onsen-info">
+                            <span class="onsen-number">1.</span>
+                            <div class="onsen-details">
+                                <h3 class="onsen-name">Hot Bath + Sauna + Steam</h3>
+                                <p class="onsen-subtitle">แช่น้ำร้อน + ซาวน่า + สตรีม</p>
+                            </div>
+                        </div>
+                        <span class="onsen-price">300 ฿</span>
+                        <a href="UserBooking.html">
+                            <button class="order-btn">BOOKING</button>
+                          </a>
+                    </div>
+
+                    <div class="onsen-item">
+                        <div class="onsen-info">
+                            <span class="onsen-number">2.</span>
+                            <div class="onsen-details">
+                                <h3 class="onsen-name">Public Onsen Bath</h3>
+                                <p class="onsen-subtitle">แช่ออนเซ็นสาธารณะ</p>
+                            </div>
+                        </div>
+                        <span class="onsen-price">400 – 600 ฿</span>
+                        <a href="UserBooking.html">
+                            <button class="order-btn">BOOKING</button>
+                          </a>
+                    </div>
+                </div>
+            </div>
+
+           
+        </div>
+    </main>
+<footer>
+  <p>&copy; 2024 Luna Room Spa Studio. All rights reserved.</p>
+</footer>
+
+<script type="module">
+      import { isAuthenticated, signOutUser } from "../scripts/authService.js";
+
+      // CHECK LOGIN ทุกครั้ง
+      async function check() {
+        const loggedIn = await isAuthenticated();
+        if (!loggedIn) window.location.href = "login.html";
+      }
+      window.addEventListener('DOMContentLoaded', check);
+      document.addEventListener('visibilitychange', function() {
+        if (document.visibilityState === 'visible') check();
+      });
+
+      // logout handler
+      document.getElementById('logout-btn').addEventListener('click', async function(e) {
+        e.preventDefault();
+        await signOutUser();
+        window.location.href = "login.html";
+      });
+
+      // บล็อก service-box ให้ต้อง login ก่อน
+      document.querySelectorAll('.service-box').forEach(box => {
+        box.addEventListener('click', async (e) => {
+          const loggedIn = await isAuthenticated();
+          if (!loggedIn) {
+            e.preventDefault();
+            window.location.href = "login.html";
+          }
+        });
+      });
+</script>
+</body>
+</html>

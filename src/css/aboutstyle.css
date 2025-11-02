@@ -1,0 +1,220 @@
+/* ==================== Reset & Base Styles ==================== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Sarabun', sans-serif;
+    background: #7B3A3A;
+    color: #fff;
+    overflow-x: hidden;
+}
+
+.container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 40px;
+}
+
+/* ==================== Header Styles ==================== */
+.header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    background: rgba(123, 58, 58, 0.95);
+    backdrop-filter: blur(10px);
+    padding: 15px 0;
+    z-index: 1000;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+}
+
+.header .container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+
+/* ==================== Hero About Section ==================== */
+.hero-about {
+    min-height: 150vh;
+    background-image: url('/src/assets/image/about1.png');
+    position: relative;
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    align-items: center;
+}
+
+.overlay {
+    
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(123, 58, 58, 0.3);
+}
+
+/* ==================== About Content ==================== */
+.about-content {
+    position: relative;
+    z-index: 2;
+    max-width: 1000px;
+    background: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(10px);
+    padding: 60px 70px;
+    border-radius: 20px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+}
+
+.about-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 48px;
+    font-weight: 700;
+    color: #ffce00;
+    margin-bottom: 30px;
+    letter-spacing: 3px;
+    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.5);
+    text-align: center;
+}
+
+/* ==================== About Text Styles ==================== */
+.about-text {
+    line-height: 1.9;
+}
+
+.about-text p {
+    font-size: 17px;
+    margin-bottom: 20px;
+    color: rgba(255, 255, 255, 0.95);
+    font-weight: 300;
+}
+
+.highlight-text {
+    font-size: 20px;
+    font-weight: 600;
+    color: #ffce00;
+    margin-bottom: 25px;
+    text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.4);
+}
+
+.about-text strong {
+    color: #ffce00;
+    font-weight: 600;
+}
+
+.mission-text {
+    margin-top: 30px;
+    padding-top: 25px;
+    border-top: 2px solid rgba(255, 206, 0, 0.3);
+}
+
+.quote-text {
+    font-size: 19px;
+    font-style: italic;
+    color: #ffce00;
+    margin-top: 35px;
+    padding: 25px;
+    background: rgba(255, 206, 0, 0.1);
+    border-left: 4px solid #ffce00;
+    border-radius: 8px;
+    font-weight: 400;
+}
+
+/* ==================== Spa Showcase Section ==================== */
+
+
+/* ==================== Responsive Design ==================== */
+@media (max-width: 1024px) {
+    .nav {
+        gap: 20px;
+    }
+    
+    .nav-link {
+        font-size: 14px;
+        padding: 6px 12px;
+    }
+    
+    .about-content {
+        padding: 50px 50px;
+    }
+    
+    .about-title {
+        font-size: 38px;
+    }
+}
+
+@media (max-width: 768px) {
+    .header .container {
+        flex-wrap: wrap;
+    }
+    
+    .nav {
+        order: 3;
+        width: 100%;
+        justify-content: center;
+        margin-top: 15px;
+        gap: 10px;
+    }
+    
+    .about-content {
+        padding: 40px 30px;
+    }
+    
+    .about-title {
+        font-size: 32px;
+    }
+    
+    .about-text p {
+        font-size: 15px;
+    }
+    
+    .highlight-text {
+        font-size: 18px;
+    }
+    
+    .quote-text {
+        font-size: 16px;
+        padding: 20px;
+    }
+    
+    .spa-showcase {
+        height: 300px;
+    }
+}
+
+@media (max-width: 480px) {
+    .logo h1 {
+        font-size: 35px;
+    }
+    
+    .logo-subtitle {
+        font-size: 13px;
+    }
+    
+    .about-content {
+        padding: 30px 20px;
+    }
+    
+    .about-title {
+        font-size: 26px;
+    }
+    
+    .about-text p {
+        font-size: 14px;
+    }
+    
+    .nav-link {
+        font-size: 12px;
+        padding: 5px 10px;
+    }
+    
+    .login-btn {
+        font-size: 14px;
+        padding: 6px 18px;
+    }
+}

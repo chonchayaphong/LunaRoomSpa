@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>การจอง - Luna Room Spa Studio</title>
+    <link rel="stylesheet" href="/src/css/bookingstyle.css">
+    
+</head>
+<body>
+    <!-- Background -->
+    <div class="background"></div>
+    <div class="background-overlay"></div>
+
+    <!-- Decorative Flowers -->
+    <div class="flower flower-left"></div>
+    <div class="flower flower-right"></div>
+
+    <!-- Booking Container -->
+    <div class="booking-container">
+        <div class="booking-modal">
+            <!-- Close Button -->
+            <button class="close-btn" onclick="window.location.href='/index.html'">
+                <svg viewBox="0 0 24 24" fill="none">
+                    <path d="M6 6L18 18M18 6L6 18" stroke-width="3" stroke-linecap="round"/>
+                </svg>
+            </button>
+
+            <!-- Header -->
+            <h1 class="booking-title">การจอง / BOOKING</h1>
+            <div class="title-divider"></div>
+
+            <!-- Booking Form -->
+            <form class="booking-form" id="bookingForm">
+                <!-- Date Selection -->
+                <div class="input-group">
+                    <label class="input-label">Select a Date</label>
+                    <input type="date" class="input-field" id="date" required>
+                </div>
+
+                <!-- Time Selection -->
+                <div class="input-group">
+                    <label class="input-label">Select Time</label>
+                    <select class="select-field" id="time" required>
+                        <option value="" disabled selected>เลือกเวลา</option>
+                        <option value="09:00">09:00 AM</option>
+                        <option value="10:00">10:00 AM</option>
+                        <option value="11:00">11:00 AM</option>
+                        <option value="12:00">12:00 PM</option>
+                        <option value="13:00">01:00 PM</option>
+                        <option value="14:00">02:00 PM</option>
+                        <option value="15:00">03:00 PM</option>
+                        <option value="16:00">04:00 PM</option>
+                        <option value="17:00">05:00 PM</option>
+                        <option value="18:00">06:00 PM</option>
+                    </select>
+                </div>
+
+                <!-- Package Selection -->
+                <div class="input-group">
+                    <label class="input-label">Select a Treatment Category</label>
+                    <select class="select-field" id="package" required>
+                        <option value="" disabled selected>เลือกแพ็กเกจ</option>
+                        <option value="massage">MASSAGE - นวดผ่อนคลาย</option>
+                        <option value="onsen">ONSEN - ออนเซ็นญี่ปุ่น</option>
+                        <option value="waxing">WAXING - แว็กซ์ขน</option>
+                    </select>
+                </div>
+
+                <!-- Treatment Options (Shows for certain packages) -->
+                <div class="input-group treatment-options" id="treatmentOptions">
+                    <label class="input-label">Choose a Treatment</label>
+                    <select class="select-field" id="treatment">
+                        <option value="" disabled selected>เลือกทรีทเมนต์</option>
+                    </select>
+                </div>
+
+                <!-- Submit Button -->
+                <button type="submit" class="submit-btn">Submit</button>
+            </form>
+        </div>
+    </div>
+
+   
+    
+    <script type="module" src="../scripts/booking.js"></script>
+
+</script>
+</body>
+</html>

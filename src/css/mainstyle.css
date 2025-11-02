@@ -1,0 +1,416 @@
+/* ===== รีเซ็ตพื้นฐาน ===== */
+@font-face {
+    font-family: 'NotoSansThai';
+    src: url('./assets/fonts/NotoSansThai-VariableFont_wdth,wght.ttf') format('truetype');
+    font-weight: 100 900; /* variable font รองรับหลายความหนา */
+    font-style: normal;
+}
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* ===== พื้นหลังหลัก ===== */
+body {
+  font-family: 'Playfair Display', serif;
+  color: white;
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.5), rgba(255, 255, 255, 0.0)),
+    url('/src/assets/image/index.jpg');
+  background-position: center;
+  background-size: cover;
+  height: 100vh;
+  position: relative;
+}
+
+/* ===== แถบเมนูด้านบน ===== */
+nav {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 80px;
+  background-color: rgba(0, 0, 0, 0.3);
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 100;
+  backdrop-filter: blur(10px);
+}
+
+/* ===== โลโก้ ===== */
+.logo {
+  background-image: url('/src/assets/image/logo.png');
+  display: flex;
+  flex-direction: column;
+  line-height: 1;
+}
+
+.logo h1 {
+  font-family: 'Great Vibes', cursive;
+  color: #ffce00;
+  font-size: 50px;
+}
+
+.logo span {
+  font-size: 17px;
+  letter-spacing: 1px;
+}
+
+/* ===== เมนูนำทาง ===== */
+.menu {
+  display: flex;
+  gap: 25px;
+  align-items: center;
+  list-style: none;
+}
+
+.menu a {
+  color: white;
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.3s, transform 0.3s;
+  padding: 8px 12px;
+  display: inline-block;
+}
+
+.menu a:hover {
+  color: #ffce00;
+  transform: translateY(-2px);
+}
+
+.menu .active {
+  background-color: #ffce00;
+  color: black;
+  padding: 8px 16px;
+  border-radius: 20px;
+  font-weight: bold;
+}
+
+/* ===== Dropdown Menu ===== */
+.dropdown-menu {
+  position: relative;
+  list-style: none;
+}
+
+.dropdown-menu > a {
+  cursor: pointer;
+  position: relative;
+  padding-right: 20px;
+}
+
+/* ลูกศรชี้ลง */
+.dropdown-menu > a::after {
+  content: '▼';
+  font-size: 10px;
+  margin-left: 6px;
+  transition: transform 0.3s ease;
+  display: inline-block;
+}
+
+.dropdown-menu:hover > a::after {
+  transform: rotate(180deg);
+}
+
+/* Dropdown Content */
+.dropdown-content {
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  background: linear-gradient(145deg, rgba(41, 33, 33, 0.98), rgba(75, 41, 45, 0.98));
+  backdrop-filter: blur(15px);
+  border-radius: 12px;
+  padding: 12px 0;
+  min-width: 200px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateX(-50%) translateY(-10px);
+  transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  list-style: none;
+  border: 1px solid rgba(255, 206, 0, 0.2);
+  margin-top: 10px;
+}
+
+/* แสดง Dropdown เมื่อ hover */
+.dropdown-menu:hover .dropdown-content {
+  opacity: 1;
+  visibility: visible;
+  transform: translateX(-50%) translateY(0);
+}
+
+/* รายการใน Dropdown */
+.dropdown-content li {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  position: relative;
+}
+
+.dropdown-content li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 0;
+  height: 100%;
+  background: linear-gradient(90deg, #ffce00, transparent);
+  transition: width 0.3s ease;
+  opacity: 0.2;
+}
+
+.dropdown-content li:hover::before {
+  width: 100%;
+}
+
+.dropdown-content a {
+  display: block;
+  padding: 12px 25px;
+  color: #f5f5f5;
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 15px;
+  transition: all 0.3s ease;
+  position: relative;
+  z-index: 1;
+  letter-spacing: 0.5px;
+}
+
+.dropdown-content a:hover {
+  color: #ffce00;
+  padding-left: 35px;
+  transform: none;
+}
+
+/* เส้นแบ่งระหว่างรายการ */
+.dropdown-content li:not(:last-child) {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* เอฟเฟกต์พิเศษเมื่อ hover บนรายการแรกและสุดท้าย */
+.dropdown-content li:first-child a {
+  border-top-left-radius: 12px;
+  border-top-right-radius: 12px;
+}
+
+.dropdown-content li:last-child a {
+  border-bottom-left-radius: 12px;
+  border-bottom-right-radius: 12px;
+}
+
+/* ไอคอนเล็กๆ ข้างหน้าแต่ละรายการ */
+.dropdown-content a::before {
+  content: '◆';
+  margin-right: 10px;
+  color: #ffce00;
+  font-size: 10px;
+  opacity: 0;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  display: inline-block;
+  transform: translateX(-10px);
+}
+
+.dropdown-content a:hover::before {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* ===== ส่วน hero ===== */
+.hero {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  background: rgba(0, 0, 0, 0.4);
+}
+
+.hero h1 {
+  font-size: 150px;
+  color: #ffce00;
+  letter-spacing: 2px;
+}
+
+.hero h1 span {
+  font-family: 'Great Vibes', cursive;
+  color: white;
+  font-size: 80px;
+  margin-left: 10px;
+}
+
+/* ===== ข้อความคำอธิบาย ===== */
+.hero p {
+  font-size: 16px;
+  max-width: 800px;
+  color: #f5f5f5;
+  line-height: 1.6;
+}
+
+.hero-bottom-text {
+  position: absolute;
+  bottom: 40px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80%;
+}
+
+.hero-bottom-text p {
+  font-size: 20px;
+  max-width: 900px;
+  color: #f5f5f5;
+  line-height: 1.6;
+  margin: 0 auto;
+}
+
+/* ===== Services Section ===== */
+.services {
+  background: linear-gradient(to bottom, rgba(255, 255, 255, 0.8), rgba(4, 2, 0, 0.9)),
+    url('/src/assets/image/index2.jpg');
+  padding: 100px 0;
+  text-align: center;
+  background-position: center;
+  background-size: cover;
+  position: relative;
+}
+
+.services h2 {
+  font-size: 2.5rem;
+  color: #a8753b;
+  margin-bottom: 60px;
+  letter-spacing: 2px;
+}
+
+.services-container {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 60px;
+  justify-items: center;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.service-box {
+  background-color: #75292D;
+  border-radius: 12px;
+  padding: 10px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  text-decoration: none;
+}
+
+.service-box:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 8px 20px rgba(16, 16, 16, 0.15);
+}
+
+.service-box img {
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+.service-box h3 {
+  margin-top: -60px;
+  font-size: 2rem;
+  color: #e2a23b;
+  position: relative;
+  text-shadow: 2px 2px 4px #000;
+}
+
+.service-box p {
+  margin-top: 20px;
+  font-size: 1rem;
+  color: #fff;
+  font-weight: 500;
+}
+
+/* ===== ABOUT SECTION ===== */
+.about {
+  background: linear-gradient(to bottom, #f9f5f1, #c7ab8a);
+  padding: 10px 0;
+  text-align: center;
+}
+
+.about h2 {
+  font-size: 36px;
+  color: #c59d5f;
+  letter-spacing: 2px;
+  margin-bottom: 50px;
+  position: relative;
+  display: inline-block;
+}
+
+.about h2::after {
+  content: "";
+  display: block;
+  width: 60px;
+  height: 3px;
+  background: #c59d5f;
+  margin: 10px auto 0;
+  border-radius: 2px;
+}
+
+.about-container {
+  max-width: 900px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 40px;
+}
+
+.about-text {
+  flex: 1 1 400px;
+  color: #4d4d4d;
+  font-size: 18px;
+  line-height: 1.8;
+  text-align: center;
+  padding: 20px;
+}
+
+.about-text strong {
+  color: #a8753b;
+}
+
+footer {
+  background-color: #222;
+  color: #ccc;
+  text-align: center;
+  padding: 20px 0;
+  position: relative;
+  bottom: 0;
+  width: 100%;
+}
+
+/* ===== ปรับสำหรับมือถือ ===== */
+@media (max-width: 768px) {
+  nav {
+    flex-direction: column;
+    padding: 10px 30px;
+  }
+
+  .menu {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .dropdown-content {
+    left: 0;
+    transform: translateX(0) translateY(-10px);
+  }
+
+  .dropdown-menu:hover .dropdown-content {
+    transform: translateX(0) translateY(0);
+  }
+
+  .hero h1 {
+    font-size: 50px;
+  }
+
+  .hero h1 span {
+    font-size: 40px;
+  }
+}

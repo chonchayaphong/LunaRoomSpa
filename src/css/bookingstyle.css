@@ -1,0 +1,318 @@
+/* ===== Reset ===== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    min-height: 100vh;
+    overflow-x: hidden;
+}
+
+/* ===== Background ===== */
+.background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('https://images.unsplash.com/photo-1544161515-4ab6ce6db874?q=80&w=2070');
+    background-size: cover;
+    background-position: center;
+    filter: blur(2px);
+    z-index: 0;
+}
+
+.background-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, rgba(86, 65, 65, 0.4), rgba(173, 127, 127, 0.4));
+    z-index: 1;
+}
+
+/* ===== Decorative Flowers ===== */
+.flower {
+    position: fixed;
+    opacity: 0.15;
+    pointer-events: none;
+    z-index: 2;
+}
+
+.flower-left {
+    bottom: 50px;
+    left: 30px;
+    width: 150px;
+    height: 150px;
+    background: radial-gradient(circle, rgba(255, 206, 0, 0.3), transparent);
+    border-radius: 50%;
+    animation: float 6s ease-in-out infinite;
+}
+
+.flower-right {
+    top: 100px;
+    right: 50px;
+    width: 120px;
+    height: 120px;
+    background: radial-gradient(circle, rgba(255, 200, 87, 0.3), transparent);
+    border-radius: 50%;
+    animation: float 8s ease-in-out infinite 2s;
+}
+
+@keyframes float {
+    0%, 100% { 
+        transform: translateY(0) rotate(0deg); 
+    }
+    50% { 
+        transform: translateY(-20px) rotate(5deg); 
+    }
+}
+
+/* ===== Container ===== */
+.booking-container {
+    position: relative;
+    z-index: 10;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 40px 20px;
+}
+
+/* ===== Modal ===== */
+.booking-modal {
+    background: linear-gradient(145deg, rgba(184, 73, 50, 0.97), rgba(139, 69, 49, 0.97));
+    backdrop-filter: blur(20px);
+    border-radius: 30px;
+    padding: 45px 50px;
+    max-width: 550px;
+    width: 100%;
+    position: relative;
+    box-shadow: 0 25px 70px rgba(0, 0, 0, 0.6);
+    border: 2px solid rgba(255, 206, 0, 0.3);
+    animation: modalAppear 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+@keyframes modalAppear {
+    from {
+        opacity: 0;
+        transform: scale(0.8) translateY(-50px);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+    }
+}
+
+/* ===== Close Button ===== */
+.close-btn {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 8px;
+    transition: all 0.3s ease;
+    z-index: 10;
+}
+
+.close-btn:hover {
+    transform: rotate(90deg) scale(1.2);
+}
+
+.close-btn svg {
+    width: 28px;
+    height: 28px;
+    stroke: white;
+    transition: stroke 0.3s;
+}
+
+.close-btn:hover svg {
+    stroke: #ffce00;
+}
+
+/* ===== Header ===== */
+.booking-title {
+    color: #fff;
+    font-size: 32px;
+    font-weight: 700;
+    text-align: center;
+    margin-bottom: 10px;
+    letter-spacing: 2px;
+    text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.4);
+}
+
+.title-divider {
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, rgba(255, 206, 0, 0.8), transparent);
+    margin-bottom: 30px;
+}
+
+/* ===== Form ===== */
+.booking-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+/* ===== Input Groups ===== */
+.input-group {
+    position: relative;
+}
+
+.input-label {
+    color: #fff;
+    font-size: 14px;
+    font-weight: 600;
+    margin-bottom: 8px;
+    display: block;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+.input-field, .select-field {
+    width: 100%;
+    padding: 16px 20px;
+    background: linear-gradient(135deg, #FFC857 0%, #FFB347 100%);
+    border: none;
+    border-radius: 50px;
+    font-size: 15px;
+    font-weight: 600;
+    color: #4a1625;
+    outline: none;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(255, 200, 87, 0.3);
+    cursor: pointer;
+}
+
+.input-field:focus, .select-field:focus {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 25px rgba(255, 200, 87, 0.6);
+    background: linear-gradient(135deg, #FFD700 0%, #FFC857 100%);
+}
+
+.input-field::placeholder {
+    color: rgba(74, 22, 37, 0.6);
+    font-weight: 600;
+}
+
+/* ===== Select Field ===== */
+.select-field {
+    appearance: none;
+    padding-right: 45px;
+    background-image: url("data:image/svg+xml,%3Csvg width='20' height='20' viewBox='0 0 20 20' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M5 7.5L10 12.5L15 7.5' stroke='%234a1625' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 20px center;
+}
+
+.select-field option {
+    background: #fff;
+    color: #4a1625;
+    padding: 10px;
+}
+
+/* ===== Treatment Options (Hidden by default) ===== */
+.treatment-options {
+    display: none;
+    animation: slideDown 0.4s ease;
+}
+
+.treatment-options.show {
+    display: block;
+}
+
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ===== Submit Button ===== */
+.submit-btn {
+    width: 100%;
+    padding: 18px;
+    background: #fff;
+    border: none;
+    border-radius: 50px;
+    color: #B84932;
+    font-size: 20px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    cursor: pointer;
+    transition: all 0.4s ease;
+    box-shadow: 0 6px 20px rgba(255, 255, 255, 0.3);
+    margin-top: 10px;
+    text-transform: uppercase;
+}
+
+.submit-btn:hover {
+    background: linear-gradient(135deg, #FFC857, #FFD700);
+    color: #4a1625;
+    transform: translateY(-4px);
+    box-shadow: 0 12px 35px rgba(255, 200, 87, 0.6);
+}
+
+.submit-btn:active {
+    transform: translateY(-2px);
+}
+
+/* ===== Responsive Design ===== */
+@media (max-width: 768px) {
+    .booking-modal {
+        padding: 35px 30px;
+        max-width: 450px;
+    }
+
+    .booking-title {
+        font-size: 26px;
+    }
+
+    .input-field, .select-field {
+        padding: 14px 18px;
+        font-size: 14px;
+    }
+
+    .submit-btn {
+        padding: 16px;
+        font-size: 18px;
+    }
+}
+
+@media (max-width: 480px) {
+    .booking-modal {
+        padding: 30px 25px;
+    }
+
+    .booking-title {
+        font-size: 24px;
+    }
+
+    .flower-left, .flower-right {
+        display: none;
+    }
+
+    .input-field, .select-field {
+        padding: 13px 16px;
+        font-size: 13px;
+    }
+
+    .input-label {
+        font-size: 12px;
+    }
+
+    .submit-btn {
+        padding: 15px;
+        font-size: 16px;
+    }
+}

@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register - Luna Room Spa Studio</title>
+    <link rel="stylesheet" href="/src/css/registerstyle.css">
+</head>
+<body>
+    <!-- Background with blur effect -->
+    <div class="background-image"></div>
+    <div class="background-overlay"></div>
+
+    <!-- Register Modal -->
+    <div class="register-container">
+        <div class="register-modal">
+            <!-- Close Button -->
+            <button class="close-btn" onclick="window.location.href='login.html'">
+                <svg width="24" height="24" viewBox="0 0 30 30" fill="none">
+                    <path d="M7.5 7.5L22.5 22.5M22.5 7.5L7.5 22.5" stroke="white" stroke-width="3" stroke-linecap="round"/>
+                </svg>
+            </button>
+
+            <!-- Header -->
+            <h1 class="register-title">SIGN UP / สมัครสมาชิก</h1>
+            <div class="title-divider"></div>
+
+            <!-- Loading Overlay -->
+            <div id="loadingOverlay" class="loading-overlay" style="display: none;">
+                <div class="spinner"></div>
+            </div>
+
+            <!-- Scrollable Form Container -->
+            <div class="form-scroll-container">
+                <!-- Register Form -->
+                <form class="register-form" onsubmit="handleRegister(event)">
+                    <!-- Name Input -->
+                    <div class="input-group full-width">
+                        <input 
+                            type="text" 
+                            id="name" 
+                            class="input-field" 
+                            placeholder="NAME"
+                            required
+                        >
+                    </div>
+
+                    <!-- Email Input -->
+                    <div class="input-group full-width">
+                        <input 
+                            type="email" 
+                            id="email" 
+                            class="input-field" 
+                            placeholder="EMAIL"
+                            required
+                        >
+                    </div>
+
+                    <!-- Password Row -->
+                    <div class="input-row">
+                        <div class="input-group">
+                            <input 
+                                type="password" 
+                                id="password" 
+                                class="input-field" 
+                                placeholder="PASSWORD"
+                                required
+                                minlength="6"
+                            >
+                        </div>
+                        <div class="input-group">
+                            <input 
+                                type="password" 
+                                id="confirm-password" 
+                                class="input-field" 
+                                placeholder="CONFIRM PASSWORD"
+                                required
+                                minlength="6"
+                            >
+                        </div>
+                    </div>
+
+                    <!-- Phone & Birthday Row -->
+                    <div class="input-row">
+                        <div class="input-group">
+                            <input 
+                                type="tel" 
+                                id="phone" 
+                                class="input-field" 
+                                placeholder="PHONE"
+                                required
+                                pattern="[0-9]{9,10}"
+                            >
+                        </div>
+                        <div class="input-group">
+                            <input 
+                                type="text" 
+                                id="birthday" 
+                                class="input-field" 
+                                placeholder="BIRTHDAY (DD/MM/YY)"
+                                required
+                                pattern="\d{2}/\d{2}/\d{2}"
+                            >
+                        </div>
+                    </div>
+
+                    <!-- Gender Dropdown -->
+                    <div class="input-group full-width">
+                        <select id="gender" class="input-field select-field" required>
+                            <option value="" disabled selected>GENDER</option>
+                            <option value="male">ชาย / Male</option>
+                            <option value="female">หญิง / Female</option>
+                            <option value="other">อื่นๆ / Other</option>
+                        </select>
+                        <svg class="dropdown-icon" width="20" height="20" viewBox="0 0 20 20" fill="none">
+                            <path d="M5 7.5L10 12.5L15 7.5" stroke="#4a1625" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </div>
+
+                    <!-- Address Input -->
+                    <div class="input-group full-width">
+                        <input 
+                            type="text" 
+                            id="address" 
+                            class="input-field" 
+                            placeholder="ADDRESS"
+                            required
+                        >
+                    </div>
+
+                    <!-- Terms Checkbox -->
+                    <label class="terms-checkbox">
+                        <input type="checkbox" id="terms" required>
+                        <span class="checkmark"></span>
+                        <span class="terms-text">I AGREE TO THE TERMS OF SERVICE</span>
+                    </label>
+
+                    <!-- Register Button -->
+                    <button type="submit" class="register-btn">REGISTER</button>
+
+                    <!-- Google Sign In -->
+                    <button type="button" class="google-btn" onclick="handleGoogleSignIn()">
+                        <svg width="24" height="24" viewBox="0 0 24 24">
+                            <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
+                            <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
+                            <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/>
+                            <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/>
+                        </svg>
+                        GOOGLE
+                    </button>
+
+                    <!-- Login Link -->
+                    <div class="login-link">
+                        ALREADY HAVE AN ACCOUNT? 
+                        <a href="login.html">LOG IN</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Loading Overlay Styles -->
+    <style>
+        .loading-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            border-radius: 30px;
+        }
+
+        .spinner {
+            width: 50px;
+            height: 50px;
+            border: 5px solid rgba(255, 255, 255, 0.3);
+            border-top: 5px solid #fff;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+    
+
+        <!-- Firebase SDK -->
+        <!-- แก้เฉพาะส่วน script ให้ใช้ v11 เหมือนกับทุกไฟล์! -->
+    <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
+    import {
+        getAuth,
+        sendPasswordResetEmail,
+        createUserWithEmailAndPassword,
+        signInWithPopup,
+        GoogleAuthProvider,
+        updateProfile
+    } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
+    import {
+        getFirestore,
+        doc,
+        setDoc,
+        serverTimestamp
+    } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
+
+    const firebaseConfig = {
+        apiKey: "AIzaSyBySeWqMxCrBI4oIEXwaCJnsjUbPW3afN4",
+        authDomain: "lunaroomspa.firebaseapp.com",
+        databaseURL: "https://lunaroomspa-default-rtdb.asia-southeast1.firebasedatabase.app",
+        projectId: "lunaroomspa",
+        storageBucket: "lunaroomspa.appspot.com",
+        messagingSenderId: "299973663585",
+        appId: "1:299973663585:web:9c3a5be0768e1eaa58c320",
+        measurementId: "G-5KF6ZJ7XDW"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+    const db = getFirestore(app);
+
+    function showLoading(show) {
+        document.getElementById('loadingOverlay').style.display = show ? 'flex' : 'none';
+    }
+
+    window.handleRegister = async function(event) {
+        event.preventDefault();
+        const password = document.getElementById('password').value;
+        const confirmPassword = document.getElementById('confirm-password').value;
+        if (password !== confirmPassword) {
+        alert('รหัสผ่านไม่ตรงกัน กรุณากรอกใหม่');
+        return;
+        }
+
+        const formData = {
+        name: document.getElementById('name').value,
+        email: document.getElementById('email').value,
+        password: password,
+        phone: document.getElementById('phone').value,
+        birthday: document.getElementById('birthday').value,
+        gender: document.getElementById('gender').value,
+        address: document.getElementById('address').value,
+        terms: document.getElementById('terms').checked
+        };
+
+        showLoading(true);
+
+        try {
+        // Create user in Firebase Auth
+        const userCredential = await createUserWithEmailAndPassword(auth, formData.email, formData.password);
+        const user = userCredential.user;
+
+        // Update display name
+        await updateProfile(user, { displayName: formData.name });
+
+        // Save user data to Firestore (users/{uid})
+        await setDoc(doc(db, "users", user.uid), {
+            uid: user.uid,
+            name: formData.name,
+            email: formData.email,
+            phone: formData.phone,
+            birthday: formData.birthday,
+            gender: formData.gender,
+            address: formData.address,
+            createdAt: serverTimestamp(),
+            provider: 'email',
+            termsAccepted: formData.terms
+        });
+
+        showLoading(false);
+        alert('สมัครสมาชิกสำเร็จ!');
+        window.location.href = 'login.html';
+        } catch (error) {
+        showLoading(false);
+        let errorMessage = 'เกิดข้อผิดพลาดในการสมัครสมาชิก';
+        switch(error.code) {
+            case 'auth/email-already-in-use':
+            errorMessage = 'อีเมลนี้ถูกใช้งานแล้ว'; break;
+            case 'auth/invalid-email':
+            errorMessage = 'รูปแบบอีเมลไม่ถูกต้อง'; break;
+            case 'auth/weak-password':
+            errorMessage = 'รหัสผ่านต้องมีอย่างน้อย 6 ตัวอักษร'; break;
+            case 'auth/network-request-failed':
+            errorMessage = 'เกิดข้อผิดพลาดในการเชื่อมต่อ กรุณาลองใหม่'; break;
+        }
+        alert(errorMessage);
+        }
+    };
+
+    window.handleGoogleSignIn = async function() {
+        showLoading(true);
+        try {
+        const provider = new GoogleAuthProvider();
+        const result = await signInWithPopup(auth, provider);
+        const user = result.user;
+        // บันทึก Firestore ทุกครั้ง!
+        await setDoc(doc(db, "users", user.uid), {
+            uid: user.uid,
+            name: user.displayName || '',
+            email: user.email,
+            phone: '',
+            birthday: '',
+            gender: '',
+            address: '',
+            createdAt: serverTimestamp(),
+            provider: 'google',
+            photoURL: user.photoURL || ''
+        }, { merge: true });
+
+        showLoading(false);
+        alert('เข้าสู่ระบบด้วย Google สำเร็จ!');
+        window.location.href = 'Users.html';
+        } catch (error) {
+        showLoading(false);
+        let errorMessage = 'เกิดข้อผิดพลาดในการเข้าสู่ระบบด้วย Google';
+        if (error.code === 'auth/popup-closed-by-user') {
+            errorMessage = 'ยกเลิกการเข้าสู่ระบบ';
+        }
+        alert(errorMessage);
+        }
+    };
+
+    // (auto-format birthday, phone input ...)
+    document.getElementById('birthday').addEventListener('input', function(e) {
+        let value = e.target.value.replace(/\D/g, '');
+        if (value.length >= 2) value = value.slice(0, 2) + '/' + value.slice(2);
+        if (value.length >= 5) value = value.slice(0, 5) + '/' + value.slice(5, 7);
+        e.target.value = value;
+    });
+    document.getElementById('phone').addEventListener('input', function(e) {
+        e.target.value = e.target.value.replace(/\D/g, '').slice(0, 10);
+    });
+    </script>
+
+</body>
+</html>

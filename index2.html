@@ -1,0 +1,26 @@
+<script>
+  // ✅ ดึง element ของลิงก์เข้าสู่ระบบ
+  const loginLink = document.getElementById('login-link');
+
+  // ✅ เช็คใน LocalStorage ว่าผู้ใช้ล็อกอินแล้วหรือยัง
+  const isLoggedIn = localStorage.getItem('loggedIn') === 'true';
+
+  if (isLoggedIn) {
+    // ถ้าล็อกอินแล้ว → แสดงไอคอนโปรไฟล์แทนปุ่ม login
+    loginLink.outerHTML = `
+      <div class="profile-menu">
+        <img src="/src/assets/image/profile.png" alt="Profile" class="profile-icon">
+        <span class="username">Luna</span>
+        <button id="logout-btn">ออกจากระบบ</button>
+      </div>
+    `;
+  }
+
+  // ✅ เมื่อคลิก “ออกจากระบบ”
+  document.addEventListener('click', function(e) {
+    if (e.target && e.target.id === 'logout-btn') {
+      localStorage.removeItem('loggedIn');
+      location.reload(); // โหลดหน้าใหม่เพื่อรีเฟรชเมนู
+    }
+  });
+</script>
